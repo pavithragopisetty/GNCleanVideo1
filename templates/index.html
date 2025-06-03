@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Basketball Game Analysis</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <style>
+        .loading {
+            display: none;
+        }
+        .loading.active {
+            display: flex;
+        }
+    </style>
+</head>
+<body class="bg-gray-100 min-h-screen">
+    <div class="container mx-auto px-4 py-8">
+        <h1 class="text-4xl font-bold text-center mb-8 text-blue-600">🏀 Basketball Game Analysis</h1>
+        
+        <!-- Upload Section -->
+        <div class="max-w-xl mx-auto bg-white rounded-lg shadow-md p-6 mb-8">
+            <form id="uploadForm" class="space-y-4">
+                <div class="border-2 border-dashed border-gray-300 rounded-lg p-6 text-center">
+                    <input type="file" id="videoFile" accept=".mp4,.mov,.avi" class="hidden">
+                    <label for="videoFile" class="cursor-pointer">
+                        <div class="text-gray-600">
+                            <svg class="mx-auto h-12 w-12 text-gray-400" stroke="currentColor" fill="none" viewBox="0 0 48 48">
+                                <path d="M28 8H12a4 4 0 00-4 4v20m32-12v8m0 0v8a4 4 0 01-4 4H12a4 4 0 01-4-4v-4m32-4l-3.172-3.172a4 4 0 00-5.656 0L28 28M8 32l9.172-9.172a4 4 0 015.656 0L28 28m0 0l4 4m4-24h8m-4-4v8m-12 4h.02" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                            </svg>
+                            <p class="mt-1">Click to upload a basketball game video</p>
+                            <p class="text-sm text-gray-500">MP4, MOV, or AVI up to 16MB</p>
+                        </div>
+                    </label>
+                </div>
+                <button type="submit" class="w-full bg-blue-600 text-white py-2 px-4 rounded-lg hover:bg-blue-700 transition duration-200">
+                    Analyze Video
+                </button>
+            </form>
+        </div>
+
+        <!-- Loading Indicator -->
+        <div id="loading" class="loading fixed inset-0 bg-black bg-opacity-50 items-center justify-center">
+            <div class="bg-white p-6 rounded-lg shadow-xl text-center">
+                <div class="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600 mx-auto mb-4"></div>
+                <p class="text-gray-700">Analyzing video... This may take a few minutes.</p>
+            </div>
+        </div>
+
+        <!-- Results Section -->
+        <div id="results" class="max-w-2xl mx-auto bg-white rounded-lg shadow-md p-6 hidden">
+            <h2 class="text-2xl font-bold mb-4 text-blue-600">Analysis Results</h2>
+            
+            <!-- Points Section -->
+            <div class="mb-6">
+                <h3 class="text-xl font-semibold mb-2">Points Scored</h3>
+                <div id="pointsList" class="space-y-2"></div>
+            </div>
+
+            <!-- Passes Section -->
+            <div class="mb-6">
+                <h3 class="text-xl font-semibold mb-2">Total Passes</h3>
+                <p id="totalPasses" class="text-lg"></p>
+            </div>
+
+            <!-- Rebounds Section -->
+            <div class="mb-6">
+                <h3 class="text-xl font-semibold mb-2">Rebounds</h3>
+                <div id="reboundsList" class="space-y-2"></div>
+            </div>
+
+            <!-- Download Section -->
+            <div class="mt-8 pt-6 border-t">
+                <h3 class="text-xl font-semibold mb-4">Download Results</h3>
+                <div class="space-y-2">
+                    <button onclick="downloadFile('summary.csv')" class="w-full bg-green-600 text-white py-2 px-4 rounded-lg hover:bg-green-700 transition duration-200">
+                        Download CSV Summary
+                    </button>
+                    <button onclick="downloadFile('summary.json')" class="w-full bg-green-600 text-white py-2 px-4 rounded-lg hover:bg-green-700 transition duration-200">
+                        Download JSON Summary
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let currentSessionId = null;
+
+        document.getElementById('uploadForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const fileInput = document.getElementById('videoFile');
+            const file = fileInput.files[0];
+            
+            if (!file) {
+                alert('Please select a video file');
+                return;
+            }
+
+            const formData = new FormData();
+            formData.append('video', file);
+
+            // Show loading
+            document.getElementById('loading').classList.add('active');
+            document.getElementById('results').classList.add('hidden');
+
+            try {
+                const response = await fetch('/analyze', {
+                    method: 'POST',
+                    body: formData
+                });
+
+                const data = await response.json();
+                
+                if (response.ok) {
+                    currentSessionId = data.session_id;
+                    displayResults(data);
+                } else {
+                    alert(data.error || 'An error occurred during analysis');
+                }
+            } catch (error) {
+                alert('An error occurred while uploading the file');
+            } finally {
+                document.getElementById('loading').classList.remove('active');
+            }
+        });
+
+        function displayResults(data) {
+            // Display points
+            const pointsList = document.getElementById('pointsList');
+            pointsList.innerHTML = '';
+            if (Object.keys(data.points).length > 0) {
+                for (const [jersey, points] of Object.entries(data.points)) {
+                    pointsList.innerHTML += `<p>Jersey #${jersey}: ${points} point(s)</p>`;
+                }
+            } else {
+                pointsList.innerHTML = '<p>No points detected</p>';
+            }
+
+            // Display passes
+            document.getElementById('totalPasses').textContent = `${data.total_passes} pass(es) detected`;
+
+            // Display rebounds
+            const reboundsList = document.getElementById('reboundsList');
+            reboundsList.innerHTML = '';
+            if (Object.keys(data.rebounds).length > 0) {
+                for (const [jersey, rebounds] of Object.entries(data.rebounds)) {
+                    reboundsList.innerHTML += `<p>Jersey #${jersey}: ${rebounds} rebound(s)</p>`;
+                }
+            } else {
+                reboundsList.innerHTML = '<p>No rebounds detected</p>';
+            }
+
+            // Show results section
+            document.getElementById('results').classList.remove('hidden');
+        }
+
+        async function downloadFile(filename) {
+            if (!currentSessionId) return;
+            
+            try {
+                const response = await fetch(`/download/${currentSessionId}/${filename}`);
+                if (response.ok) {
+                    const blob = await response.blob();
+                    const url = window.URL.createObjectURL(blob);
+                    const a = document.createElement('a');
+                    a.href = url;
+                    a.download = filename;
+                    document.body.appendChild(a);
+                    a.click();
+                    window.URL.revokeObjectURL(url);
+                    a.remove();
+                } else {
+                    alert('Error downloading file');
+                }
+            } catch (error) {
+                alert('Error downloading file');
+            }
+        }
+
+        // Cleanup when leaving the page
+        window.addEventListener('beforeunload', async () => {
+            if (currentSessionId) {
+                try {
+                    await fetch(`/cleanup/${currentSessionId}`, { method: 'POST' });
+                } catch (error) {
+                    console.error('Error cleaning up session:', error);
+                }
+            }
+        });
+    </script>
+</body>
+</html> 
