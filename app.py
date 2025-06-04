@@ -9,7 +9,7 @@ from logging.handlers import RotatingFileHandler
 
 app = Flask(__name__)
 app.config['UPLOAD_FOLDER'] = 'uploads'
-app.config['MAX_CONTENT_LENGTH'] = 16 * 1024 * 1024  # 16MB max file size
+app.config['MAX_CONTENT_LENGTH'] = 50 * 1024 * 1024  # 16MB max file size
 ALLOWED_EXTENSIONS = {'mp4', 'mov', 'avi'}
 
 # Set up logging
@@ -56,7 +56,8 @@ def analyze_video():
     app.logger.info(f'Created session {session_id}')
 
     # Save the uploaded video
-    video_path = os.path.join(session_dir, secure_filename(file.filename))
+    video_filename = secure_filename(file.filename)
+    video_path = os.path.join(session_dir, video_filename)
     file.save(video_path)
     app.logger.info(f'Saved video to {video_path}')
 
@@ -73,7 +74,8 @@ def analyze_video():
             'points': dict(points),
             'total_passes': total_passes,
             'rebounds': dict(rebounds),
-            'session_id': session_id
+            'session_id': session_id,
+            'video_filename': video_filename
         }
         
         app.logger.info(f'Analysis complete for session {session_id}')
@@ -82,6 +84,16 @@ def analyze_video():
     except Exception as e:
         app.logger.error(f'Error during analysis: {str(e)}', exc_info=True)
         return jsonify({'error': str(e)}), 500
+
+@app.route('/video/<session_id>/<filename>')
+def serve_video(session_id, filename):
+    try:
+        return send_file(
+            os.path.join(app.config['UPLOAD_FOLDER'], session_id, filename),
+            mimetype='video/mp4'
+        )
+    except Exception as e:
+        return jsonify({'error': str(e)}), 404
 
 @app.route('/download/<session_id>/<filename>')
 def download_file(session_id, filename):
@@ -104,4 +116,4 @@ def cleanup_session(session_id):
         return jsonify({'error': str(e)}), 500
 
 if __name__ == '__main__':
-    app.run(debug=True) 
+    app.run(host="0.0.0.0", port=5001, debug=True)
