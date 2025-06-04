@@ -21,6 +21,7 @@
             <a href="/" class="text-white hover:text-orange-200 font-semibold transition">Home</a>
             <a href="/analysis" class="text-white hover:text-orange-200 font-semibold transition">Analysis</a>
             <a href="/about" class="text-white hover:text-orange-200 font-semibold transition">About</a>
+            <a href="/blogs" class="text-white hover:text-orange-200 font-semibold transition">Blogs</a>
         </nav>
     </header>
     <main class="flex-1 bg-black px-4 py-10 flex flex-col items-center">
@@ -90,7 +91,7 @@
                             </svg>
                             <span class="text-orange-300 font-semibold">Click or drag a file here</span>
                             <span class="text-gray-400 text-xs">MP4, MOV, or AVI up to 50MB</span>
-                            <input id="video" name="video" type="file" accept="video/mp4,video/quicktime,video/x-msvideo" class="hidden" required>
+                            <input id="video" name="video" type="file" accept="video/*" class="hidden" required>
                         </label>
                         <button type="submit" class="w-full bg-orange-500 hover:bg-orange-600 text-white font-bold py-2 px-4 rounded-lg transition">Analyze Video</button>
                     </form>
@@ -106,27 +107,66 @@
         // Handle form submission with AJAX
         document.getElementById('uploadForm').addEventListener('submit', async function(e) {
             e.preventDefault();
+            
+            const fileInput = document.getElementById('video');
+            const file = fileInput.files[0];
+            console.log('File input:', fileInput);
+            console.log('Selected file:', file);
+            
+            if (!file) {
+                console.log('No file selected');
+                alert('Please select a video file to upload.');
+                return;
+            }
+            
+            // Check file size (50MB limit)
+            console.log('File size:', file.size);
+            if (file.size > 50 * 1024 * 1024) {
+                console.log('File too large');
+                alert('File size must be less than 50MB. Please compress your video and try again.');
+                return;
+            }
+            
+            // Check file extension
+            const fileName = file.name.toLowerCase();
+            const allowedExtensions = ['.mp4', '.mov', '.avi'];
+            const hasValidExtension = allowedExtensions.some(ext => fileName.endsWith(ext));
+            console.log('File name:', fileName, 'Has valid extension:', hasValidExtension);
+            
+            if (!hasValidExtension) {
+                console.log('Invalid file extension');
+                alert('Please upload a video file in MP4, MOV, or AVI format.');
+                return;
+            }
+            
             document.getElementById('uploadStatus').classList.remove('hidden');
             document.getElementById('results').classList.add('hidden');
 
             const formData = new FormData(this);
+            console.log('FormData prepared:', formData);
 
             try {
                 const response = await fetch('/analyze', {
                     method: 'POST',
                     body: formData
                 });
-                const data = await response.json();
-
-                if (response.ok) {
-                    // Update the results section
-                    renderResults(data);
-                    document.getElementById('results').classList.remove('hidden');
-                } else {
-                    alert(data.error || 'An error occurred during analysis.');
+                console.log('Fetch response:', response);
+                
+                if (!response.ok) {
+                    const errorData = await response.json();
+                    console.log('Error response JSON:', errorData);
+                    throw new Error(errorData.error || 'Server error occurred');
                 }
+                
+                const data = await response.json();
+                console.log('Success response JSON:', data);
+                // Update the results section
+                renderResults(data);
+                document.getElementById('results').classList.remove('hidden');
+                
             } catch (error) {
-                alert('An error occurred while uploading the file.');
+                console.error('Upload error:', error);
+                alert(error.message || 'An error occurred while uploading the file. Please try again.');
             } finally {
                 document.getElementById('uploadStatus').classList.add('hidden');
             }

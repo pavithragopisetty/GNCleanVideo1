@@ -21,6 +21,11 @@ wheels/
 .installed.cfg
 *.egg
 
+# Logs
+logs/
+*.log
+nohup.out
+
 # Virtual Environment
 venv/
 ENV/
@@ -31,9 +36,18 @@ ENV/
 *.swp
 *.swo
 
+# OS
+.DS_Store
+Thumbs.db
+
 # Project specific
-frames/
-output/
+uploads/
+sudo/
+
+# Explicitly allow static directory
+!static/
+!static/**
+
 # Allow images and videos in static/
 !static/*.mp4
 !static/*.jpg
@@ -49,8 +63,4 @@ output/
 # Environment variables
 .env
 
-.DS_Store
-*.zip
-*.log
-uploads/
 GirlsNav_frames/

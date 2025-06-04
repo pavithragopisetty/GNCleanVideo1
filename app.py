@@ -9,7 +9,7 @@ from logging.handlers import RotatingFileHandler
 
 app = Flask(__name__)
 app.config['UPLOAD_FOLDER'] = 'uploads'
-app.config['MAX_CONTENT_LENGTH'] = 50 * 1024 * 1024  # 16MB max file size
+app.config['MAX_CONTENT_LENGTH'] = 50 * 1024 * 1024  # 50MB max file size
 ALLOWED_EXTENSIONS = {'mp4', 'mov', 'avi'}
 
 # Set up logging
@@ -122,6 +122,22 @@ def about():
 @app.route('/analysis')
 def analysis():
     return render_template('analysis.html')
+
+@app.route('/blogs')
+def blogs():
+    return render_template('blogs.html')
+
+@app.errorhandler(404)
+def not_found_error(error):
+    return jsonify({'error': 'Resource not found (404)'}), 404
+
+@app.errorhandler(413)
+def request_entity_too_large(error):
+    return jsonify({'error': 'File too large. Maximum allowed size is 50MB.'}), 413
+
+@app.errorhandler(500)
+def internal_error(error):
+    return jsonify({'error': 'Internal server error (500)'}), 500
 
 if __name__ == '__main__':
     app.run(host="0.0.0.0", port=5001, debug=True)

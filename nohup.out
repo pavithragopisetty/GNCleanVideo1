@@ -4,3 +4,424 @@ nohup: ignoring input
  * Debug mode: on
 Address already in use
 Port 5001 is in use by another program. Either identify and stop that program, or start the server with a different port.
+[2025-06-04 17:21:52,678] INFO in app: Basketball Analysis startup
+ * Serving Flask app 'app'
+ * Debug mode: on
+WARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5001
+ * Running on http://172.31.18.49:5001
+Press CTRL+C to quit
+ * Restarting with stat
+[2025-06-04 17:21:53,323] INFO in app: Basketball Analysis startup
+ * Debugger is active!
+ * Debugger PIN: 559-630-209
+127.0.0.1 - - [04/Jun/2025 17:23:07] "GET /copy-of-baseline-physical-ability HTTP/1.0" 404 -
+[2025-06-04 17:24:05,404] INFO in app: Basketball Analysis startup
+ * Serving Flask app 'app'
+ * Debug mode: on
+WARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5001
+ * Running on http://172.31.18.49:5001
+Press CTRL+C to quit
+ * Restarting with stat
+[2025-06-04 17:24:06,052] INFO in app: Basketball Analysis startup
+ * Debugger is active!
+ * Debugger PIN: 559-630-209
+127.0.0.1 - - [04/Jun/2025 17:24:30] "GET / HTTP/1.0" 200 -
+127.0.0.1 - - [04/Jun/2025 17:24:31] "GET /static/girlsnavlogo.png HTTP/1.0" 200 -
+127.0.0.1 - - [04/Jun/2025 17:27:31] "GET / HTTP/1.0" 200 -
+127.0.0.1 - - [04/Jun/2025 17:27:31] "GET /static/girlsnavlogo.png HTTP/1.0" 304 -
+ * Detected change in '/home/ec2-user/GirlsNav5/app.py', reloading
+ * Restarting with stat
+[2025-06-04 17:31:23,740] INFO in app: Basketball Analysis startup
+ * Debugger is active!
+ * Debugger PIN: 559-630-209
+[2025-06-04 17:35:14,813] INFO in app: Basketball Analysis startup
+ * Serving Flask app 'app'
+ * Debug mode: on
+WARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5001
+ * Running on http://172.31.18.49:5001
+Press CTRL+C to quit
+ * Restarting with stat
+[2025-06-04 17:35:15,460] INFO in app: Basketball Analysis startup
+ * Debugger is active!
+ * Debugger PIN: 559-630-209
+127.0.0.1 - - [04/Jun/2025 17:37:46] "GET / HTTP/1.0" 200 -
+127.0.0.1 - - [04/Jun/2025 17:37:58] "GET / HTTP/1.0" 200 -
+127.0.0.1 - - [04/Jun/2025 17:37:58] "GET /static/girlsnavlogo.png HTTP/1.0" 304 -
+127.0.0.1 - - [04/Jun/2025 17:38:19] "GET / HTTP/1.0" 200 -
+127.0.0.1 - - [04/Jun/2025 17:39:30] "GET /ReportServer HTTP/1.0" 404 -
+127.0.0.1 - - [04/Jun/2025 17:39:50] "GET /version HTTP/1.0" 404 -
+127.0.0.1 - - [04/Jun/2025 17:39:50] "GET / HTTP/1.0" 200 -
+127.0.0.1 - - [04/Jun/2025 17:39:51] "GET / HTTP/1.0" 200 -
+127.0.0.1 - - [04/Jun/2025 17:39:52] "GET /v1 HTTP/1.0" 404 -
+127.0.0.1 - - [04/Jun/2025 17:39:52] "GET / HTTP/1.0" 200 -
+127.0.0.1 - - [04/Jun/2025 17:48:33] "GET /robots.txt HTTP/1.0" 404 -
+127.0.0.1 - - [04/Jun/2025 17:48:33] "GET /blank-3 HTTP/1.0" 404 -
+[2025-06-04 17:59:00,019] INFO in app: Basketball Analysis startup
+ * Serving Flask app 'app'
+ * Debug mode: on
+WARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5001
+ * Running on http://172.31.18.49:5001
+Press CTRL+C to quit
+ * Restarting with stat
+[2025-06-04 17:59:00,663] INFO in app: Basketball Analysis startup
+ * Debugger is active!
+ * Debugger PIN: 559-630-209
+127.0.0.1 - - [04/Jun/2025 18:03:27] "HEAD / HTTP/1.1" 200 -
+127.0.0.1 - - [04/Jun/2025 18:05:42] "HEAD / HTTP/1.0" 200 -
+127.0.0.1 - - [04/Jun/2025 18:16:50] "GET / HTTP/1.0" 200 -
+127.0.0.1 - - [04/Jun/2025 18:21:11] "HEAD / HTTP/1.0" 200 -
+127.0.0.1 - - [04/Jun/2025 18:21:19] "HEAD / HTTP/1.0" 200 -
+76.21.126.45 - - [04/Jun/2025 18:23:35] "GET / HTTP/1.1" 200 -
+76.21.126.45 - - [04/Jun/2025 18:23:35] "GET /static/girlsnavlogo.png HTTP/1.1" 200 -
+76.21.126.45 - - [04/Jun/2025 18:23:35] "GET /static/girlsnavlogo.png HTTP/1.1" 304 -
+76.21.126.45 - - [04/Jun/2025 18:23:37] "GET / HTTP/1.1" 200 -
+76.21.126.45 - - [04/Jun/2025 18:23:37] "GET /static/girlsnavlogo.png HTTP/1.1" 304 -
+[2025-06-04 18:23:49,228] INFO in app: Created session 96cf5953-bcec-41e3-a160-b3b78003bbe5
+[2025-06-04 18:23:49,237] INFO in app: Saved video to uploads/96cf5953-bcec-41e3-a160-b3b78003bbe5/GirlsNav.mp4
+[2025-06-04 18:23:49,239] INFO in app: Starting frame extraction
+[2025-06-04 18:23:52,498] INFO in app: Starting frame analysis
+127.0.0.1 - - [04/Jun/2025 18:24:29] "GET /.env HTTP/1.0" 404 -
+127.0.0.1 - - [04/Jun/2025 18:24:30] "POST / HTTP/1.0" 405 -
+[2025-06-04 18:25:07,986] INFO in app: Analysis complete for session 96cf5953-bcec-41e3-a160-b3b78003bbe5
+76.21.126.45 - - [04/Jun/2025 18:25:07] "POST /analyze HTTP/1.1" 200 -
+76.21.126.45 - - [04/Jun/2025 18:25:08] "GET /video/96cf5953-bcec-41e3-a160-b3b78003bbe5/GirlsNav.mp4 HTTP/1.1" 206 -
+76.21.126.45 - - [04/Jun/2025 18:25:08] "GET /video/96cf5953-bcec-41e3-a160-b3b78003bbe5/GirlsNav.mp4 HTTP/1.1" 206 -
+76.21.126.45 - - [04/Jun/2025 18:29:25] "GET /apple-touch-icon-precomposed.png HTTP/1.1" 404 -
+76.21.126.45 - - [04/Jun/2025 18:29:25] "GET /static/girlsnavlogo.png HTTP/1.1" 200 -
+76.21.126.45 - - [04/Jun/2025 18:29:25] "GET /apple-touch-icon.png HTTP/1.1" 404 -
+76.21.126.45 - - [04/Jun/2025 18:29:25] "GET /favicon.ico HTTP/1.1" 404 -
+76.21.126.45 - - [04/Jun/2025 18:29:33] code 400, message Bad request version ('$iÜÀ\x00*::\x13\x01\x13\x02\x13\x03À,À+Ì©À0À/Ì¨À')
+76.21.126.45 - - [04/Jun/2025 18:29:33] "\x16\x03\x01\x02\x00\x01\x00\x01ü\x03\x03Ù@\x90\x9b\x8fN\x95yãÚdn\x12´~4\x1aËÌÑC!ß8ÆNZÃ\x14\x93äM \x06Ï«ö>z´S»Ç\x1fùm'ì\x8bÂî¼z}@âcÞá; $iÜÀ\x00*::\x13\x01\x13\x02\x13\x03À,À+Ì©À0À/Ì¨À" HTTPStatus.BAD_REQUEST -
+76.21.126.45 - - [04/Jun/2025 18:29:34] code 400, message Bad request version ('\x00*úú\x13\x01\x13\x02\x13\x03À,À+Ì©À0À/Ì¨À')
+76.21.126.45 - - [04/Jun/2025 18:29:34] "\x16\x03\x01\x02\x00\x01\x00\x01ü\x03\x03ÿÂáXom\x96Æ\x80\x0d®qv$+ \x87~gÜ´Ä¡¥Éç±imW\x1b\x05 ¨ùy \x97_\x07lpÚ(«á\x9c\x0c~f,2\x9cDÔ"Óü\x0e\x8c$\x06)A\x09\x00*úú\x13\x01\x13\x02\x13\x03À,À+Ì©À0À/Ì¨À" HTTPStatus.BAD_REQUEST -
+76.21.126.45 - - [04/Jun/2025 18:29:34] code 400, message Bad request version ('J\x1b\x11\\pÎóbÓÓGÙ#v\x11q\x16\x00*ÚÚ\x13\x01\x13\x02\x13\x03À,À+Ì©À0À/Ì¨À')
+76.21.126.45 - - [04/Jun/2025 18:29:34] "\x16\x03\x01\x02\x00\x01\x00\x01ü\x03\x03:#éÖ\x98\x1búè­\x97\x16\x96n\x1cp\x15¶¨n¥<¦VZ\x18ï ÃÆ¿lH \x81áG\x0fM\x96äß\x943¢Ä\x83ó\x0bJ\x1b\x11\\pÎóbÓÓGÙ#v\x11q\x16\x00*ÚÚ\x13\x01\x13\x02\x13\x03À,À+Ì©À0À/Ì¨À" HTTPStatus.BAD_REQUEST -
+76.21.126.45 - - [04/Jun/2025 18:29:34] code 400, message Bad request version ('AÂº\x15\x1b¤áJGSÛ\x8e¥\x03×\x99Æ¹¾\x00*êê\x13\x01\x13\x02\x13\x03À,À+Ì©À0À/Ì¨À')
+76.21.126.45 - - [04/Jun/2025 18:29:34] "\x16\x03\x01\x02\x00\x01\x00\x01ü\x03\x03z\x9b\x95éâiÙC\x9f\x96T\x06¨Í\x98ÿç\x05aíÉ[\x1dÃ\x02ÅÉ\x1e´U¾ü ]¦`\x9d\x94Dç>:\x1fMÄ AÂº\x15\x1b¤áJGSÛ\x8e¥\x03×\x99Æ¹¾\x00*êê\x13\x01\x13\x02\x13\x03À,À+Ì©À0À/Ì¨À" HTTPStatus.BAD_REQUEST -
+76.21.126.45 - - [04/Jun/2025 18:29:34] code 400, message Bad request version ('K«§\x1a\x03¦&g¸2QÕ\x8e\\_Äù$\x7f\x05\x807û;[\x11ø0\x97üAÅ\x00*úú\x13\x01\x13\x02\x13\x03À,À+Ì©À0À/Ì¨À')
+76.21.126.45 - - [04/Jun/2025 18:29:34] "\x16\x03\x01\x02\x00\x01\x00\x01ü\x03\x03\x14JP½\x8cú\x89Í\x18\x9bkZ\x88¯\x94S^è7ù\x91\x8b\x9e7\x88 0\x10Ìô\x86& K«§\x1a\x03¦&g¸2QÕ\x8e\\_Äù$\x7f\x05\x807û;[\x11ø0\x97üAÅ\x00*úú\x13\x01\x13\x02\x13\x03À,À+Ì©À0À/Ì¨À" HTTPStatus.BAD_REQUEST -
+76.21.126.45 - - [04/Jun/2025 18:29:34] code 400, message Bad request version ('Ó\x13h\x14\x10ï:pÈ¹¸R¤bË\x97Zs\x07îYØ\x87ÉÎ{JÖ=Gë\x8a\x00*êê\x13\x01\x13\x02\x13\x03À,À+Ì©À0À/Ì¨À')
+76.21.126.45 - - [04/Jun/2025 18:29:34] "\x16\x03\x01\x02\x00\x01\x00\x01ü\x03\x03\x1föC´\x17# ~¡5\x99\x88¹v\x86\x86\x0f1âkðÖ!+8¾&6DÉ\x10Ù Ó\x13h\x14\x10ï:pÈ¹¸R¤bË\x97Zs\x07îYØ\x87ÉÎ{JÖ=Gë\x8a\x00*êê\x13\x01\x13\x02\x13\x03À,À+Ì©À0À/Ì¨À" HTTPStatus.BAD_REQUEST -
+76.21.126.45 - - [04/Jun/2025 18:29:35] code 400, message Bad request syntax ('\x16\x03\x01\x02\x00\x01\x00\x01ü\x03\x03Mì\x8f¦QJ<©\x8a»\x15ÙN')
+76.21.126.45 - - [04/Jun/2025 18:29:35] "\x16\x03\x01\x02\x00\x01\x00\x01ü\x03\x03Mì\x8f¦QJ<©\x8a»\x15ÙN" HTTPStatus.BAD_REQUEST -
+76.21.126.45 - - [04/Jun/2025 18:29:35] code 400, message Bad request version ('>\x9bÐÌµÖ)\x02§\x82y\x04\x1aî+º`É¾SO5x\x96õ)\x00*JJ\x13\x01\x13\x02\x13\x03À,À+Ì©À0À/Ì¨À')
+76.21.126.45 - - [04/Jun/2025 18:29:35] "\x16\x03\x01\x02\x00\x01\x00\x01ü\x03\x03\x1ec´#\x1a\x1f\x8c\x96\x07§w6àh\\ÓQi\x0f\x00Ò1\x1f\x03\x9c\x88,g5è\x0d÷ éG\x07Nv >\x9bÐÌµÖ)\x02§\x82y\x04\x1aî+º`É¾SO5x\x96õ)\x00*JJ\x13\x01\x13\x02\x13\x03À,À+Ì©À0À/Ì¨À" HTTPStatus.BAD_REQUEST -
+76.21.126.45 - - [04/Jun/2025 18:30:14] "GET / HTTP/1.1" 200 -
+76.21.126.45 - - [04/Jun/2025 18:30:15] "GET /static/girlsnavlogo.png HTTP/1.1" 304 -
+76.21.126.45 - - [04/Jun/2025 18:30:20] "GET / HTTP/1.1" 200 -
+76.21.126.45 - - [04/Jun/2025 18:30:20] "GET /static/girlsnavlogo.png HTTP/1.1" 304 -
+76.21.126.45 - - [04/Jun/2025 18:30:20] "GET /static/girlsnavlogo.png HTTP/1.1" 304 -
+127.0.0.1 - - [04/Jun/2025 18:30:20] "GET / HTTP/1.0" 200 -
+127.0.0.1 - - [04/Jun/2025 18:30:20] "GET /static/girlsnavlogo.png HTTP/1.0" 200 -
+127.0.0.1 - - [04/Jun/2025 18:30:21] "GET /static/girlsnavlogo.png HTTP/1.0" 304 -
+127.0.0.1 - - [04/Jun/2025 18:30:23] "GET /apple-touch-icon-precomposed.png HTTP/1.0" 404 -
+127.0.0.1 - - [04/Jun/2025 18:30:23] "GET /apple-touch-icon.png HTTP/1.0" 404 -
+127.0.0.1 - - [04/Jun/2025 18:30:23] "GET /favicon.ico HTTP/1.0" 404 -
+127.0.0.1 - - [04/Jun/2025 18:30:23] "GET /static/girlsnavlogo.png HTTP/1.0" 200 -
+127.0.0.1 - - [04/Jun/2025 18:30:32] "GET / HTTP/1.0" 200 -
+76.21.126.45 - - [04/Jun/2025 18:30:40] "GET / HTTP/1.1" 200 -
+76.21.126.45 - - [04/Jun/2025 18:30:40] "GET /static/girlsnavlogo.png HTTP/1.1" 200 -
+127.0.0.1 - - [04/Jun/2025 18:30:45] "GET /apple-touch-icon-precomposed.png HTTP/1.0" 404 -
+127.0.0.1 - - [04/Jun/2025 18:30:49] "GET /static/girlsnavlogo.png HTTP/1.0" 200 -
+127.0.0.1 - - [04/Jun/2025 18:30:57] "GET /apple-touch-icon.png HTTP/1.0" 404 -
+127.0.0.1 - - [04/Jun/2025 18:31:00] "GET /favicon.ico HTTP/1.0" 404 -
+127.0.0.1 - - [04/Jun/2025 18:35:02] "POST / HTTP/1.0" 405 -
+127.0.0.1 - - [04/Jun/2025 18:39:11] "GET /about HTTP/1.0" 200 -
+127.0.0.1 - - [04/Jun/2025 18:40:48] "GET /.git/config HTTP/1.0" 404 -
+127.0.0.1 - - [04/Jun/2025 18:40:48] "GET / HTTP/1.0" 200 -
+127.0.0.1 - - [04/Jun/2025 18:41:06] "GET /robots.txt HTTP/1.0" 404 -
+76.21.126.45 - - [04/Jun/2025 18:42:23] code 400, message Bad request syntax ('\x16\x03\x01\x02\x00\x01\x00\x01ü\x03\x03¿s')
+76.21.126.45 - - [04/Jun/2025 18:42:23] "\x16\x03\x01\x02\x00\x01\x00\x01ü\x03\x03¿s" HTTPStatus.BAD_REQUEST -
+76.21.126.45 - - [04/Jun/2025 18:42:23] code 400, message Bad request version ('ZÖ\x04SðH°\x99\x13´\x00*\x1a\x1a\x13\x01\x13\x02\x13\x03À,À+Ì©À0À/Ì¨À')
+76.21.126.45 - - [04/Jun/2025 18:42:23] "\x16\x03\x01\x02\x00\x01\x00\x01ü\x03\x03§HØ?´3{)\x08¯\x9f\x18qÿ^\x9fÃÖ.\x07\x93\x957.=^»¶Q\x17¥H 1\x07Ò«\x12û«ü[wy>°\x8cK2j\x10»a\x8f\x1dZÖ\x04SðH°\x99\x13´\x00*\x1a\x1a\x13\x01\x13\x02\x13\x03À,À+Ì©À0À/Ì¨À" HTTPStatus.BAD_REQUEST -
+127.0.0.1 - - [04/Jun/2025 18:42:24] "GET / HTTP/1.0" 200 -
+76.21.126.45 - - [04/Jun/2025 18:42:24] code 400, message Bad request version ('ëá\x02§VN\x1a{f÷\x00*zz\x13\x01\x13\x02\x13\x03À,À+Ì©À0À/Ì¨À')
+76.21.126.45 - - [04/Jun/2025 18:42:24] "\x16\x03\x01\x02\x00\x01\x00\x01ü\x03\x03U\x0eF]ÃFuö:EûIõ\x0cüûÑ²\x86!ÀUACº\x03[w½\x13ýÙ \x06B«çú Cª\x99[{äÖ[¾ûRÇì\x08à\x1eëá\x02§VN\x1a{f÷\x00*zz\x13\x01\x13\x02\x13\x03À,À+Ì©À0À/Ì¨À" HTTPStatus.BAD_REQUEST -
+127.0.0.1 - - [04/Jun/2025 18:42:24] "GET /static/girlsnavlogo.png HTTP/1.0" 200 -
+76.21.126.45 - - [04/Jun/2025 18:42:24] code 400, message Bad request version ('ìsöÛ¶V|\x81øó')
+76.21.126.45 - - [04/Jun/2025 18:42:24] "\x16\x03\x01\x02\x00\x01\x00\x01ü\x03\x03ú¬¡\x14°P\x19\x0f \x08\x18\x93Z#\x0dxîs\x90\x95B¯£º©p\x0dEñ\x01®  ¤¦\x02\x82q¾°x\x9e³\x0dn\x85ìsöÛ¶V|\x81øó" HTTPStatus.BAD_REQUEST -
+127.0.0.1 - - [04/Jun/2025 18:42:24] "GET /static/girlsnavlogo.png HTTP/1.0" 304 -
+127.0.0.1 - - [04/Jun/2025 18:42:27] "GET / HTTP/1.0" 200 -
+127.0.0.1 - - [04/Jun/2025 18:42:27] "GET /static/girlsnavlogo.png HTTP/1.0" 200 -
+127.0.0.1 - - [04/Jun/2025 18:42:28] "GET /static/girlsnavlogo.png HTTP/1.0" 304 -
+127.0.0.1 - - [04/Jun/2025 18:42:28] "GET /apple-touch-icon-precomposed.png HTTP/1.0" 404 -
+127.0.0.1 - - [04/Jun/2025 18:42:28] "GET /favicon.ico HTTP/1.0" 404 -
+127.0.0.1 - - [04/Jun/2025 18:42:28] "GET /static/girlsnavlogo.png HTTP/1.0" 200 -
+127.0.0.1 - - [04/Jun/2025 18:42:28] "GET /apple-touch-icon.png HTTP/1.0" 404 -
+127.0.0.1 - - [04/Jun/2025 18:42:41] "GET / HTTP/1.0" 200 -
+127.0.0.1 - - [04/Jun/2025 18:42:42] "GET /static/girlsnavlogo.png HTTP/1.0" 304 -
+127.0.0.1 - - [04/Jun/2025 18:48:10] "GET / HTTP/1.0" 200 -
+127.0.0.1 - - [04/Jun/2025 18:50:11] "GET /analysis HTTP/1.0" 200 -
+127.0.0.1 - - [04/Jun/2025 18:52:40] "GET / HTTP/1.0" 200 -
+127.0.0.1 - - [04/Jun/2025 18:52:40] "GET /static/girlsnavlogo.png HTTP/1.0" 304 -
+127.0.0.1 - - [04/Jun/2025 18:52:40] "GET / HTTP/1.0" 200 -
+127.0.0.1 - - [04/Jun/2025 18:52:40] "GET /static/girlsnavlogo.png HTTP/1.0" 304 -
+[2025-06-04 18:52:49,599] INFO in app: Created session 90097f41-6041-4a6c-a6ab-8eb09331cc74
+[2025-06-04 18:52:49,613] INFO in app: Saved video to uploads/90097f41-6041-4a6c-a6ab-8eb09331cc74/GirlsNav.mp4
+[2025-06-04 18:52:49,613] INFO in app: Starting frame extraction
+[2025-06-04 18:52:52,850] INFO in app: Starting frame analysis
+[2025-06-04 18:53:53,566] INFO in app: Analysis complete for session 90097f41-6041-4a6c-a6ab-8eb09331cc74
+127.0.0.1 - - [04/Jun/2025 18:53:53] "POST /analyze HTTP/1.0" 200 -
+127.0.0.1 - - [04/Jun/2025 18:55:24] "GET / HTTP/1.0" 200 -
+127.0.0.1 - - [04/Jun/2025 18:55:24] "GET /static/girlsnavlogo.png HTTP/1.0" 200 -
+127.0.0.1 - - [04/Jun/2025 18:55:24] "GET /static/girlsnavlogo.png HTTP/1.0" 304 -
+[2025-06-04 18:55:35,560] INFO in app: Created session a78afa60-605d-4e1f-9c69-3b545ae6a7ed
+[2025-06-04 18:55:35,572] INFO in app: Saved video to uploads/a78afa60-605d-4e1f-9c69-3b545ae6a7ed/GirlsNav.mp4
+[2025-06-04 18:55:35,573] INFO in app: Starting frame extraction
+[2025-06-04 18:55:38,653] INFO in app: Starting frame analysis
+[2025-06-04 18:56:33,219] INFO in app: Analysis complete for session a78afa60-605d-4e1f-9c69-3b545ae6a7ed
+127.0.0.1 - - [04/Jun/2025 18:56:33] "POST /analyze HTTP/1.0" 200 -
+127.0.0.1 - - [04/Jun/2025 18:56:33] "GET /video/a78afa60-605d-4e1f-9c69-3b545ae6a7ed/GirlsNav.mp4 HTTP/1.0" 206 -
+127.0.0.1 - - [04/Jun/2025 18:56:41] "GET /static/girlsnavlogo.png HTTP/1.0" 304 -
+127.0.0.1 - - [04/Jun/2025 18:56:41] "GET /video/a78afa60-605d-4e1f-9c69-3b545ae6a7ed/GirlsNav.mp4 HTTP/1.0" 206 -
+127.0.0.1 - - [04/Jun/2025 18:56:41] "GET /video/a78afa60-605d-4e1f-9c69-3b545ae6a7ed/GirlsNav.mp4 HTTP/1.0" 206 -
+127.0.0.1 - - [04/Jun/2025 18:56:46] "GET /download/a78afa60-605d-4e1f-9c69-3b545ae6a7ed/summary.csv HTTP/1.0" 404 -
+127.0.0.1 - - [04/Jun/2025 18:56:46] "GET /favicon.ico HTTP/1.0" 404 -
+[2025-06-04 18:57:02,942] INFO in app: Created session f1926565-8b13-4b42-b443-806f98d42891
+[2025-06-04 18:57:02,961] INFO in app: Saved video to uploads/f1926565-8b13-4b42-b443-806f98d42891/GirlsNav.mp4
+[2025-06-04 18:57:02,961] INFO in app: Starting frame extraction
+[2025-06-04 18:57:06,027] INFO in app: Starting frame analysis
+[2025-06-04 18:58:01,082] INFO in app: Analysis complete for session f1926565-8b13-4b42-b443-806f98d42891
+127.0.0.1 - - [04/Jun/2025 18:58:01] "POST /analyze HTTP/1.0" 200 -
+127.0.0.1 - - [04/Jun/2025 18:58:01] "GET /video/f1926565-8b13-4b42-b443-806f98d42891/GirlsNav.mp4 HTTP/1.0" 206 -
+127.0.0.1 - - [04/Jun/2025 19:04:55] "GET / HTTP/1.0" 200 -
+127.0.0.1 - - [04/Jun/2025 19:06:08] "GET / HTTP/1.0" 200 -
+127.0.0.1 - - [04/Jun/2025 19:07:50] "GET / HTTP/1.0" 200 -
+127.0.0.1 - - [04/Jun/2025 19:07:50] "GET /static/girlsnavlogo.png HTTP/1.0" 200 -
+127.0.0.1 - - [04/Jun/2025 19:07:51] "GET /static/girlsnavlogo.png HTTP/1.0" 304 -
+127.0.0.1 - - [04/Jun/2025 19:08:58] "GET /about HTTP/1.0" 200 -
+127.0.0.1 - - [04/Jun/2025 19:08:58] "GET /static/girlsnavlogo.png HTTP/1.0" 304 -
+127.0.0.1 - - [04/Jun/2025 19:08:58] "GET /static/pavithra.jpeg HTTP/1.0" 200 -
+127.0.0.1 - - [04/Jun/2025 19:08:58] "GET /static/pete.jpg HTTP/1.0" 200 -
+127.0.0.1 - - [04/Jun/2025 19:09:00] "GET /analysis HTTP/1.0" 200 -
+127.0.0.1 - - [04/Jun/2025 19:09:00] "GET /static/girlsnavlogo.png HTTP/1.0" 304 -
+127.0.0.1 - - [04/Jun/2025 19:09:02] "GET / HTTP/1.0" 200 -
+127.0.0.1 - - [04/Jun/2025 19:09:02] "GET /static/girlsnavlogo.png HTTP/1.0" 304 -
+[2025-06-04 19:09:37,010] INFO in app: Created session 80b74d83-f1ad-47b6-86ba-d6ccc02bc17d
+[2025-06-04 19:09:37,021] INFO in app: Saved video to uploads/80b74d83-f1ad-47b6-86ba-d6ccc02bc17d/GirlsNav.mp4
+[2025-06-04 19:09:37,021] INFO in app: Starting frame extraction
+Saved: uploads/96cf5953-bcec-41e3-a160-b3b78003bbe5/frames/frame_0000.jpg
+Saved: uploads/96cf5953-bcec-41e3-a160-b3b78003bbe5/frames/frame_0001.jpg
+Saved: uploads/96cf5953-bcec-41e3-a160-b3b78003bbe5/frames/frame_0002.jpg
+Saved: uploads/96cf5953-bcec-41e3-a160-b3b78003bbe5/frames/frame_0003.jpg
+Saved: uploads/96cf5953-bcec-41e3-a160-b3b78003bbe5/frames/frame_0004.jpg
+Saved: uploads/96cf5953-bcec-41e3-a160-b3b78003bbe5/frames/frame_0005.jpg
+Saved: uploads/96cf5953-bcec-41e3-a160-b3b78003bbe5/frames/frame_0006.jpg
+Saved: uploads/96cf5953-bcec-41e3-a160-b3b78003bbe5/frames/frame_0007.jpg
+Saved: uploads/96cf5953-bcec-41e3-a160-b3b78003bbe5/frames/frame_0008.jpg
+Saved: uploads/96cf5953-bcec-41e3-a160-b3b78003bbe5/frames/frame_0009.jpg
+Saved: uploads/96cf5953-bcec-41e3-a160-b3b78003bbe5/frames/frame_0010.jpg
+Saved: uploads/96cf5953-bcec-41e3-a160-b3b78003bbe5/frames/frame_0011.jpg
+Saved: uploads/96cf5953-bcec-41e3-a160-b3b78003bbe5/frames/frame_0012.jpg
+Saved: uploads/96cf5953-bcec-41e3-a160-b3b78003bbe5/frames/frame_0013.jpg
+Saved: uploads/96cf5953-bcec-41e3-a160-b3b78003bbe5/frames/frame_0014.jpg
+Saved: uploads/96cf5953-bcec-41e3-a160-b3b78003bbe5/frames/frame_0015.jpg
+Saved: uploads/96cf5953-bcec-41e3-a160-b3b78003bbe5/frames/frame_0016.jpg
+Saved: uploads/96cf5953-bcec-41e3-a160-b3b78003bbe5/frames/frame_0017.jpg
+Saved: uploads/96cf5953-bcec-41e3-a160-b3b78003bbe5/frames/frame_0018.jpg
+Saved: uploads/96cf5953-bcec-41e3-a160-b3b78003bbe5/frames/frame_0019.jpg
+Saved: uploads/96cf5953-bcec-41e3-a160-b3b78003bbe5/frames/frame_0020.jpg
+✅ Done. Extracted 21 frames to folder: uploads/96cf5953-bcec-41e3-a160-b3b78003bbe5/frames
+Saved: uploads/90097f41-6041-4a6c-a6ab-8eb09331cc74/frames/frame_0000.jpg
+Saved: uploads/90097f41-6041-4a6c-a6ab-8eb09331cc74/frames/frame_0001.jpg
+Saved: uploads/90097f41-6041-4a6c-a6ab-8eb09331cc74/frames/frame_0002.jpg
+Saved: uploads/90097f41-6041-4a6c-a6ab-8eb09331cc74/frames/frame_0003.jpg
+Saved: uploads/90097f41-6041-4a6c-a6ab-8eb09331cc74/frames/frame_0004.jpg
+Saved: uploads/90097f41-6041-4a6c-a6ab-8eb09331cc74/frames/frame_0005.jpg
+Saved: uploads/90097f41-6041-4a6c-a6ab-8eb09331cc74/frames/frame_0006.jpg
+Saved: uploads/90097f41-6041-4a6c-a6ab-8eb09331cc74/frames/frame_0007.jpg
+Saved: uploads/90097f41-6041-4a6c-a6ab-8eb09331cc74/frames/frame_0008.jpg
+Saved: uploads/90097f41-6041-4a6c-a6ab-8eb09331cc74/frames/frame_0009.jpg
+Saved: uploads/90097f41-6041-4a6c-a6ab-8eb09331cc74/frames/frame_0010.jpg
+Saved: uploads/90097f41-6041-4a6c-a6ab-8eb09331cc74/frames/frame_0011.jpg
+Saved: uploads/90097f41-6041-4a6c-a6ab-8eb09331cc74/frames/frame_0012.jpg
+Saved: uploads/90097f41-6041-4a6c-a6ab-8eb09331cc74/frames/frame_0013.jpg
+Saved: uploads/90097f41-6041-4a6c-a6ab-8eb09331cc74/frames/frame_0014.jpg
+Saved: uploads/90097f41-6041-4a6c-a6ab-8eb09331cc74/frames/frame_0015.jpg
+Saved: uploads/90097f41-6041-4a6c-a6ab-8eb09331cc74/frames/frame_0016.jpg
+Saved: uploads/90097f41-6041-4a6c-a6ab-8eb09331cc74/frames/frame_0017.jpg
+Saved: uploads/90097f41-6041-4a6c-a6ab-8eb09331cc74/frames/frame_0018.jpg
+Saved: uploads/90097f41-6041-4a6c-a6ab-8eb09331cc74/frames/frame_0019.jpg
+Saved: uploads/90097f41-6041-4a6c-a6ab-8eb09331cc74/frames/frame_0020.jpg
+✅ Done. Extracted 21 frames to folder: uploads/90097f41-6041-4a6c-a6ab-8eb09331cc74/frames
+Saved: uploads/a78afa60-605d-4e1f-9c69-3b545ae6a7ed/frames/frame_0000.jpg
+Saved: uploads/a78afa60-605d-4e1f-9c69-3b545ae6a7ed/frames/frame_0001.jpg
+Saved: uploads/a78afa60-605d-4e1f-9c69-3b545ae6a7ed/frames/frame_0002.jpg
+Saved: uploads/a78afa60-605d-4e1f-9c69-3b545ae6a7ed/frames/frame_0003.jpg
+Saved: uploads/a78afa60-605d-4e1f-9c69-3b545ae6a7ed/frames/frame_0004.jpg
+Saved: uploads/a78afa60-605d-4e1f-9c69-3b545ae6a7ed/frames/frame_0005.jpg
+Saved: uploads/a78afa60-605d-4e1f-9c69-3b545ae6a7ed/frames/frame_0006.jpg
+Saved: uploads/a78afa60-605d-4e1f-9c69-3b545ae6a7ed/frames/frame_0007.jpg
+Saved: uploads/a78afa60-605d-4e1f-9c69-3b545ae6a7ed/frames/frame_0008.jpg
+Saved: uploads/a78afa60-605d-4e1f-9c69-3b545ae6a7ed/frames/frame_0009.jpg
+Saved: uploads/a78afa60-605d-4e1f-9c69-3b545ae6a7ed/frames/frame_0010.jpg
+Saved: uploads/a78afa60-605d-4e1f-9c69-3b545ae6a7ed/frames/frame_0011.jpg
+Saved: uploads/a78afa60-605d-4e1f-9c69-3b545ae6a7ed/frames/frame_0012.jpg
+Saved: uploads/a78afa60-605d-4e1f-9c69-3b545ae6a7ed/frames/frame_0013.jpg
+Saved: uploads/a78afa60-605d-4e1f-9c69-3b545ae6a7ed/frames/frame_0014.jpg
+Saved: uploads/a78afa60-605d-4e1f-9c69-3b545ae6a7ed/frames/frame_0015.jpg
+Saved: uploads/a78afa60-605d-4e1f-9c69-3b545ae6a7ed/frames/frame_0016.jpg
+Saved: uploads/a78afa60-605d-4e1f-9c69-3b545ae6a7ed/frames/frame_0017.jpg
+Saved: uploads/a78afa60-605d-4e1f-9c69-3b545ae6a7ed/frames/frame_0018.jpg
+Saved: uploads/a78afa60-605d-4e1f-9c69-3b545ae6a7ed/frames/frame_0019.jpg
+Saved: uploads/a78afa60-605d-4e1f-9c69-3b545ae6a7ed/frames/frame_0020.jpg
+✅ Done. Extracted 21 frames to folder: uploads/a78afa60-605d-4e1f-9c69-3b545ae6a7ed/frames
+Saved: uploads/f1926565-8b13-4b42-b443-806f98d42891/frames/frame_0000.jpg
+Saved: uploads/f1926565-8b13-4b42-b443-806f98d42891/frames/frame_0001.jpg
+Saved: uploads/f1926565-8b13-4b42-b443-806f98d42891/frames/frame_0002.jpg
+Saved: uploads/f1926565-8b13-4b42-b443-806f98d42891/frames/frame_0003.jpg
+Saved: uploads/f1926565-8b13-4b42-b443-806f98d42891/frames/frame_0004.jpg
+Saved: uploads/f1926565-8b13-4b42-b443-806f98d42891/frames/frame_0005.jpg
+Saved: uploads/f1926565-8b13-4b42-b443-806f98d42891/frames/frame_0006.jpg
+Saved: uploads/f1926565-8b13-4b42-b443-806f98d42891/frames/frame_0007.jpg
+Saved: uploads/f1926565-8b13-4b42-b443-806f98d42891/frames/frame_0008.jpg
+Saved: uploads/f1926565-8b13-4b42-b443-806f98d42891/frames/frame_0009.jpg
+Saved: uploads/f1926565-8b13-4b42-b443-806f98d42891/frames/frame_0010.jpg
+Saved: uploads/f1926565-8b13-4b42-b443-806f98d42891/frames/frame_0011.jpg
+Saved: uploads/f1926565-8b13-4b42-b443-806f98d42891/frames/frame_0012.jpg
+Saved: uploads/f1926565-8b13-4b42-b443-806f98d42891/frames/frame_0013.jpg
+Saved: uploads/f1926565-8b13-4b42-b443-806f98d42891/frames/frame_0014.jpg
+Saved: uploads/f1926565-8b13-4b42-b443-806f98d42891/frames/frame_0015.jpg
+Saved: uploads/f1926565-8b13-4b42-b443-806f98d42891/frames/frame_0016.jpg
+Saved: uploads/f1926565-8b13-4b42-b443-806f98d42891/frames/frame_0017.jpg
+Saved: uploads/f1926565-8b13-4b42-b443-806f98d42891/frames/frame_0018.jpg
+Saved: uploads/f1926565-8b13-4b42-b443-806f98d42891/frames/frame_0019.jpg
+Saved: uploads/f1926565-8b13-4b42-b443-806f98d42891/frames/frame_0020.jpg
+✅ Done. Extracted 21 frames to folder: uploads/f1926565-8b13-4b42-b443-806f98d42891/frames
+Saved: uploads/80b74d83-f1ad-47b6-86ba-d6ccc02bc17d/frames/frame_0000.jpg
+Saved: uploads/80b74d83-f1ad-47b6-86ba-d6ccc02bc17d/frames/frame_0001.jpg
+Saved: uploads/80b74d83-f1ad-47b6-86ba-d6ccc02bc17d/frames/frame_0002.jpg
+Saved: uploads/80b74d83-f1ad-47b6-86ba-d6ccc02bc17d/frames/frame_0003.jpg
+Saved: uploads/80b74d83-f1ad-47b6-86ba-d6ccc02bc17d/frames/frame_0004.jpg
+Saved: uploads/80b74d83-f1ad-47b6-86ba-d6ccc02bc17d/frames/frame_0005.jpg
+Saved: uploads/80b74d83-f1ad-47b6-86ba-d6ccc02bc17d/frames/frame_0006.jpg
+Saved: uploads/80b74d83-f1ad-47b6-86ba-d6ccc02bc17d/frames/frame_0007.jpg
+Saved: uploads/80b74d83-f1ad-47b6-86ba-d6ccc02bc17d/frames/frame_0008.jpg
+Saved: uploads/80b74d83-f1ad-47b6-86ba-d6ccc02bc17d/frames/frame_0009.jpg
+Saved: uploads/80b74d83-f1ad-47b6-86ba-d6ccc02bc17d/frames/frame_0010.jpg
+Saved: uploads/80b74d83-f1ad-47b6-86ba-d6ccc02bc17d/frames/frame_0011.jpg
+Saved: uploads/80b74d83-f1ad-47b6-86ba-d6ccc02bc17d/frames/frame_0012.jpg
+Saved: uploads/80b74d83-f1ad-47b6-86ba-d6ccc02bc17d/frames/frame_0013.jpg
+Saved: uploads/80b74d83-f1ad-47b6-86ba-d6ccc02bc17d/frames/frame_0014.jpg
+Saved: uploads/80b74d83-f1ad-47b6-86ba-d6ccc02bc17d/frames/frame_0015.jpg
+Saved: uploads/80b74d83-f1ad-47b6-86ba-d6ccc02bc17d/frames/frame_0016.jpg
+Saved: uploads/80b74d83-f1ad-47b6-86ba-d6ccc02bc17d/frames/frame_0017.jpg
+Saved: uploads/80b74d83-f1ad-47b6-86ba-d6ccc02bc17d/frames/frame_0018.jpg
+Saved: uploads/80b74d83-f1ad-47b6-86ba-d6ccc02bc17d/frames/frame_0019.jpg
+Saved: uploads/80b74d83-f1ad-47b6-86ba-d6ccc02bc17d/frames/frame_0020.jpg
+[2025-06-04 19:09:40,094] INFO in app: Starting frame analysis
+ * Detected change in '/home/ec2-user/GirlsNav5/app.py', reloading
+✅ Done. Extracted 21 frames to folder: uploads/80b74d83-f1ad-47b6-86ba-d6ccc02bc17d/frames
+ * Restarting with stat
+[2025-06-04 19:09:56,668] INFO in app: Basketball Analysis startup
+ * Debugger is active!
+ * Debugger PIN: 559-630-209
+[2025-06-04 19:10:06,786] INFO in app: Created session 50ef2a66-8bf0-4194-acb4-71313d3f0ce2
+[2025-06-04 19:10:06,794] INFO in app: Saved video to uploads/50ef2a66-8bf0-4194-acb4-71313d3f0ce2/GirlsNav.mp4
+[2025-06-04 19:10:06,795] INFO in app: Starting frame extraction
+[2025-06-04 19:10:09,922] INFO in app: Starting frame analysis
+ * Detected change in '/home/ec2-user/GirlsNav5/app.py', reloading
+Saved: uploads/50ef2a66-8bf0-4194-acb4-71313d3f0ce2/frames/frame_0000.jpg
+Saved: uploads/50ef2a66-8bf0-4194-acb4-71313d3f0ce2/frames/frame_0001.jpg
+Saved: uploads/50ef2a66-8bf0-4194-acb4-71313d3f0ce2/frames/frame_0002.jpg
+Saved: uploads/50ef2a66-8bf0-4194-acb4-71313d3f0ce2/frames/frame_0003.jpg
+Saved: uploads/50ef2a66-8bf0-4194-acb4-71313d3f0ce2/frames/frame_0004.jpg
+Saved: uploads/50ef2a66-8bf0-4194-acb4-71313d3f0ce2/frames/frame_0005.jpg
+Saved: uploads/50ef2a66-8bf0-4194-acb4-71313d3f0ce2/frames/frame_0006.jpg
+Saved: uploads/50ef2a66-8bf0-4194-acb4-71313d3f0ce2/frames/frame_0007.jpg
+Saved: uploads/50ef2a66-8bf0-4194-acb4-71313d3f0ce2/frames/frame_0008.jpg
+Saved: uploads/50ef2a66-8bf0-4194-acb4-71313d3f0ce2/frames/frame_0009.jpg
+Saved: uploads/50ef2a66-8bf0-4194-acb4-71313d3f0ce2/frames/frame_0010.jpg
+Saved: uploads/50ef2a66-8bf0-4194-acb4-71313d3f0ce2/frames/frame_0011.jpg
+Saved: uploads/50ef2a66-8bf0-4194-acb4-71313d3f0ce2/frames/frame_0012.jpg
+Saved: uploads/50ef2a66-8bf0-4194-acb4-71313d3f0ce2/frames/frame_0013.jpg
+Saved: uploads/50ef2a66-8bf0-4194-acb4-71313d3f0ce2/frames/frame_0014.jpg
+Saved: uploads/50ef2a66-8bf0-4194-acb4-71313d3f0ce2/frames/frame_0015.jpg
+Saved: uploads/50ef2a66-8bf0-4194-acb4-71313d3f0ce2/frames/frame_0016.jpg
+Saved: uploads/50ef2a66-8bf0-4194-acb4-71313d3f0ce2/frames/frame_0017.jpg
+Saved: uploads/50ef2a66-8bf0-4194-acb4-71313d3f0ce2/frames/frame_0018.jpg
+Saved: uploads/50ef2a66-8bf0-4194-acb4-71313d3f0ce2/frames/frame_0019.jpg
+Saved: uploads/50ef2a66-8bf0-4194-acb4-71313d3f0ce2/frames/frame_0020.jpg
+✅ Done. Extracted 21 frames to folder: uploads/50ef2a66-8bf0-4194-acb4-71313d3f0ce2/frames
+ * Restarting with stat
+[2025-06-04 19:11:16,468] INFO in app: Basketball Analysis startup
+ * Debugger is active!
+ * Debugger PIN: 559-630-209
+127.0.0.1 - - [04/Jun/2025 19:11:23] "GET / HTTP/1.0" 200 -
+127.0.0.1 - - [04/Jun/2025 19:11:23] "GET /static/girlsnavlogo.png HTTP/1.0" 304 -
+127.0.0.1 - - [04/Jun/2025 19:11:26] "GET /blogs HTTP/1.0" 200 -
+127.0.0.1 - - [04/Jun/2025 19:11:26] "GET /static/girlsnavlogo.png HTTP/1.0" 304 -
+127.0.0.1 - - [04/Jun/2025 19:12:18] "GET / HTTP/1.0" 200 -
+127.0.0.1 - - [04/Jun/2025 19:12:18] "GET /static/girlsnavlogo.png HTTP/1.0" 304 -
+[2025-06-04 19:12:30,399] INFO in app: Created session d2fbdcde-a19f-4959-a786-5991427743b2
+[2025-06-04 19:12:30,408] INFO in app: Saved video to uploads/d2fbdcde-a19f-4959-a786-5991427743b2/GirlsNav.mp4
+[2025-06-04 19:12:30,408] INFO in app: Starting frame extraction
+[2025-06-04 19:12:33,509] INFO in app: Starting frame analysis
+127.0.0.1 - - [04/Jun/2025 19:13:06] "GET / HTTP/1.0" 200 -
+127.0.0.1 - - [04/Jun/2025 19:13:09] "GET /static/girlsnavlogo.png HTTP/1.0" 304 -
+127.0.0.1 - - [04/Jun/2025 19:13:09] "GET /static/girlsnavlogo.png HTTP/1.0" 304 -
+[2025-06-04 19:13:20,639] INFO in app: Created session 92534cd2-7e6b-4e5f-8cdf-573fe029c790
+[2025-06-04 19:13:20,651] INFO in app: Saved video to uploads/92534cd2-7e6b-4e5f-8cdf-573fe029c790/GirlsNav.mp4
+[2025-06-04 19:13:20,651] INFO in app: Starting frame extraction
+[2025-06-04 19:13:23,740] INFO in app: Starting frame analysis
+[2025-06-04 19:13:37,818] INFO in app: Analysis complete for session d2fbdcde-a19f-4959-a786-5991427743b2
+127.0.0.1 - - [04/Jun/2025 19:13:37] "POST /analyze HTTP/1.0" 200 -
+[2025-06-04 19:14:24,184] INFO in app: Analysis complete for session 92534cd2-7e6b-4e5f-8cdf-573fe029c790
+127.0.0.1 - - [04/Jun/2025 19:14:24] "POST /analyze HTTP/1.0" 200 -
+127.0.0.1 - - [04/Jun/2025 19:17:25] "GET / HTTP/1.0" 200 -
+[2025-06-04 19:17:51,204] INFO in app: Basketball Analysis startup
+ * Serving Flask app 'app'
+ * Debug mode: on
+WARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5001
+ * Running on http://172.31.18.49:5001
+Press CTRL+C to quit
+ * Restarting with stat
+[2025-06-04 19:17:51,843] INFO in app: Basketball Analysis startup
+ * Debugger is active!
+ * Debugger PIN: 559-630-209
+127.0.0.1 - - [04/Jun/2025 19:18:16] "GET / HTTP/1.0" 200 -
+127.0.0.1 - - [04/Jun/2025 19:18:17] "GET /static/girlsnavlogo.png HTTP/1.0" 304 -
+[2025-06-04 19:18:26,735] INFO in app: Created session a5f9aadf-9390-4c84-8358-78cae6f0ac29
+[2025-06-04 19:18:26,743] INFO in app: Saved video to uploads/a5f9aadf-9390-4c84-8358-78cae6f0ac29/GirlsNav.mp4
+[2025-06-04 19:18:26,743] INFO in app: Starting frame extraction
+[2025-06-04 19:18:29,909] INFO in app: Starting frame analysis
+127.0.0.1 - - [04/Jun/2025 19:19:16] "GET / HTTP/1.0" 200 -
+[2025-06-04 19:19:30,768] INFO in app: Analysis complete for session a5f9aadf-9390-4c84-8358-78cae6f0ac29
+127.0.0.1 - - [04/Jun/2025 19:19:30] "POST /analyze HTTP/1.0" 200 -
+127.0.0.1 - - [04/Jun/2025 19:19:30] "GET /video/a5f9aadf-9390-4c84-8358-78cae6f0ac29/GirlsNav.mp4 HTTP/1.0" 206 -
+127.0.0.1 - - [04/Jun/2025 19:19:31] "GET /video/a5f9aadf-9390-4c84-8358-78cae6f0ac29/GirlsNav.mp4 HTTP/1.0" 206 -
+127.0.0.1 - - [04/Jun/2025 19:19:31] "GET /video/a5f9aadf-9390-4c84-8358-78cae6f0ac29/GirlsNav.mp4 HTTP/1.0" 206 -
+127.0.0.1 - - [04/Jun/2025 19:19:54] "GET / HTTP/1.0" 200 -
+127.0.0.1 - - [04/Jun/2025 19:19:54] "GET /static/girlsnavlogo.png HTTP/1.0" 304 -
+127.0.0.1 - - [04/Jun/2025 19:19:55] "GET / HTTP/1.0" 200 -
+127.0.0.1 - - [04/Jun/2025 19:19:55] "GET /static/girlsnavlogo.png HTTP/1.0" 304 -
+127.0.0.1 - - [04/Jun/2025 19:20:04] "GET / HTTP/1.0" 200 -
+[2025-06-04 19:20:07,444] INFO in app: Created session db7bf11e-8968-4f2a-a4cc-595e9a158308
+[2025-06-04 19:20:07,468] INFO in app: Saved video to uploads/db7bf11e-8968-4f2a-a4cc-595e9a158308/GirlsNav.mp4
+[2025-06-04 19:20:07,470] INFO in app: Starting frame extraction
+[2025-06-04 19:20:10,563] INFO in app: Starting frame analysis
+127.0.0.1 - - [04/Jun/2025 19:20:27] "GET /blogs HTTP/1.0" 200 -
+127.0.0.1 - - [04/Jun/2025 19:20:27] "GET /static/girlsnavlogo.png HTTP/1.0" 304 -
+[2025-06-04 19:21:11,848] INFO in app: Analysis complete for session db7bf11e-8968-4f2a-a4cc-595e9a158308
+127.0.0.1 - - [04/Jun/2025 19:21:11] "POST /analyze HTTP/1.0" 200 -
+127.0.0.1 - - [04/Jun/2025 19:21:36] "GET / HTTP/1.0" 200 -
+127.0.0.1 - - [04/Jun/2025 19:21:36] "GET /static/girlsnavlogo.png HTTP/1.0" 304 -
+127.0.0.1 - - [04/Jun/2025 19:21:36] "GET /static/girlsnavlogo.png HTTP/1.0" 304 -
+[2025-06-04 19:21:50,951] INFO in app: Created session 65853a0a-8f0e-41cd-ad8b-6065353f3d6d
+[2025-06-04 19:21:50,972] INFO in app: Saved video to uploads/65853a0a-8f0e-41cd-ad8b-6065353f3d6d/GirlsNav.mp4
+[2025-06-04 19:21:50,972] INFO in app: Starting frame extraction
+[2025-06-04 19:21:54,248] INFO in app: Starting frame analysis
+[2025-06-04 19:22:53,243] INFO in app: Analysis complete for session 65853a0a-8f0e-41cd-ad8b-6065353f3d6d
+127.0.0.1 - - [04/Jun/2025 19:22:53] "POST /analyze HTTP/1.0" 200 -
+127.0.0.1 - - [04/Jun/2025 19:22:53] "GET /video/65853a0a-8f0e-41cd-ad8b-6065353f3d6d/GirlsNav.mp4 HTTP/1.0" 206 -
+127.0.0.1 - - [04/Jun/2025 19:22:53] "GET /video/65853a0a-8f0e-41cd-ad8b-6065353f3d6d/GirlsNav.mp4 HTTP/1.0" 206 -
