@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us | GirlsNav</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="icon" href="/static/girlsnavlogo.png">
+</head>
+<body class="bg-black min-h-screen flex flex-col">
+    <header class="bg-orange-500 shadow-lg py-2 flex items-center justify-center">
+        <img src="{{ url_for('static', filename='girlsnavlogo.png') }}" alt="GirlsNav Logo" class="h-10 w-10 mr-3 rounded-full shadow-md">
+        <h1 class="text-2xl font-extrabold text-white tracking-wide mr-8">GirlsNav Basketball Analysis</h1>
+        <nav class="flex space-x-6">
+            <a href="/" class="text-white hover:text-orange-200 font-semibold transition">Home</a>
+            <a href="/analysis" class="text-white hover:text-orange-200 font-semibold transition">Analysis</a>
+            <a href="/about" class="text-white hover:text-orange-200 font-semibold transition">About</a>
+        </nav>
+    </header>
+    <main class="flex-1 bg-black px-4 py-10 flex flex-col items-center">
+        <section class="max-w-3xl w-full text-center mb-10">
+            <h2 class="text-4xl font-extrabold text-orange-400 mb-2">Empowering the Next Generation of Athletes</h2>
+            <p class="text-lg text-white mb-4">GirlsNav turns game footage into performance insights — helping athletes grow with confidence and giving families a clear view of their journey.</p>
+        </section>
+        <section class="max-w-3xl w-full mb-10">
+            <h3 class="text-2xl font-bold text-orange-300 mb-2">Why We Built GirlsNav</h3>
+            <p class="text-white mb-6">Youth athletes pour their energy into practices and games, but measuring that growth shouldn't require advanced tools or manual stat tracking. We created GirlsNav to bring clarity and confidence to that process — so parents and players can focus on what matters: development, effort, and progress.</p>
+        </section>
+        <section class="max-w-5xl w-full mb-10">
+            <h3 class="text-2xl font-bold text-orange-300 mb-6">Meet Our Team</h3>
+            <div class="grid md:grid-cols-2 gap-8">
+                <div class="bg-gray-900 rounded-xl shadow-lg p-6 flex flex-col items-center">
+                    <img src="/static/pavithra.jpeg" alt="Pavithra Gopisetty" class="w-20 h-20 rounded-full mb-4 border-4 border-orange-400 object-cover">
+                    <h4 class="text-xl font-bold text-orange-400 mb-1">Pavithra Gopisetty</h4>
+                    <p class="text-orange-200 font-semibold mb-2">Co-Founder and CEO</p>
+                    <p class="text-white text-sm mb-4">Pavithra Gopisetty is a seasoned technology executive and innovation leader with a passion for building impactful products that bridge data, AI, and human potential. With years of experience leading engineering and product teams at companies like Apple and Osaic, she brings deep expertise in creating scalable digital platforms.<br><br>Pavithra founded GirlsNav to empower young athletes and their families with meaningful insights — making skill development transparent, measurable, and inspiring. She believes that access to smart tools can change how athletes grow, perform, and gain confidence — both on and off the court.</p>
+                    <a href="https://www.linkedin.com/in/pavithra-gopisetty" target="_blank" class="bg-orange-500 hover:bg-orange-600 text-white font-bold py-2 px-4 rounded-lg transition">LinkedIn</a>
+                </div>
+                <div class="bg-gray-900 rounded-xl shadow-lg p-6 flex flex-col items-center">
+                    <img src="/static/pete.jpg" alt="Pete Dunbar" class="w-20 h-20 rounded-full mb-4 border-4 border-orange-400 object-cover">
+                    <h4 class="text-xl font-bold text-orange-400 mb-1">Pete Dunbar</h4>
+                    <p class="text-orange-200 font-semibold mb-2">Co-Founder and Advisor</p>
+                    <p class="text-white text-sm mb-4">Coach Pete Dunbar brings decades of playing and coaching experience to GirlsNav, shaped by a standout basketball career in the Midwest and West valley. A former collegiate star, he was honored as Conference Player of the Year and earned NAIA All-American recognition — achievements that opened doors for a professional career both in the U.S. and internationally.<br><br>Even at the height of his playing days, Coach Pete's passion for teaching the game never took a back seat. He has contributed to player development at every level — from middle school to college — serving as a coach, mentor, and skill development trainer. As a co-founder and advisor, he ensures that our platform reflects the needs of real players. His mission: to guide young athletes on their individual journeys and help them see their growth through data, discipline, and heart.</p>
+                    <a href="#" class="bg-orange-500 hover:bg-orange-600 text-white font-bold py-2 px-4 rounded-lg transition">LinkedIn</a>
+                </div>
+            </div>
+        </section>
+        <section class="max-w-2xl w-full text-center mt-8">
+            <h3 class="text-2xl font-bold text-orange-300 mb-4">Ready to See the Game Differently?</h3>
+            <a href="/" class="bg-orange-500 hover:bg-orange-600 text-white font-bold py-3 px-8 rounded-lg text-lg transition">Try GirlsNav Now</a>
+        </section>
+    </main>
+    <footer class="bg-black text-center text-gray-500 py-4 text-sm">
+        &copy; {{ year }} GirlsNav. All rights reserved.
+    </footer>
+</body>
+</html> 

@@ -115,5 +115,13 @@ def cleanup_session(session_id):
     except Exception as e:
         return jsonify({'error': str(e)}), 500
 
+@app.route('/about')
+def about():
+    return render_template('about.html')
+
+@app.route('/analysis')
+def analysis():
+    return render_template('analysis.html')
+
 if __name__ == '__main__':
     app.run(host="0.0.0.0", port=5001, debug=True)

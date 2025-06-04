@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Analysis | GirlsNav</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="icon" href="/static/girlsnavlogo.png">
+</head>
+<body class="bg-black min-h-screen flex flex-col">
+    <header class="bg-orange-500 shadow-lg py-2 flex items-center justify-center">
+        <img src="{{ url_for('static', filename='girlsnavlogo.png') }}" alt="GirlsNav Logo" class="h-10 w-10 mr-3 rounded-full shadow-md">
+        <h1 class="text-2xl font-extrabold text-white tracking-wide mr-8">GirlsNav Basketball Analysis</h1>
+        <nav class="flex space-x-6">
+            <a href="/" class="text-white hover:text-orange-200 font-semibold transition">Home</a>
+            <a href="/analysis" class="text-white hover:text-orange-200 font-semibold transition">Analysis</a>
+            <a href="/about" class="text-white hover:text-orange-200 font-semibold transition">About</a>
+        </nav>
+    </header>
+    <main class="flex-1 bg-black px-4 py-10 flex flex-col items-center">
+        <section class="w-full bg-orange-50 bg-opacity-10 rounded-xl py-8 px-4 mb-10 text-center">
+            <h2 class="text-4xl font-extrabold text-orange-500 mb-2">What GirlsNav Delivers</h2>
+            <p class="text-lg text-gray-200 mb-6">Discover how GirlsNav transforms your game footage into actionable insights for athletes, families, and coaches.</p>
+            <div class="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+                <a href="#" class="block bg-white/10 hover:bg-orange-100/20 border border-orange-200 rounded-xl p-6 text-left shadow-lg transition">
+                    <h3 class="text-xl font-bold text-orange-500 mb-2">Video-based stats</h3>
+                    <p class="text-gray-200">Upload footage and get automated breakdowns of points, assists, rebounds, and more.</p>
+                </a>
+                <a href="#" class="block bg-white/10 hover:bg-orange-100/20 border border-orange-200 rounded-xl p-6 text-left shadow-lg transition">
+                    <h3 class="text-xl font-bold text-orange-500 mb-2">Player-specific insights</h3>
+                    <p class="text-gray-200">Track performance by jersey number with no extra hardware needed.</p>
+                </a>
+                <a href="#" class="block bg-white/10 hover:bg-orange-100/20 border border-orange-200 rounded-xl p-6 text-left shadow-lg transition">
+                    <h3 class="text-xl font-bold text-orange-500 mb-2">No manual work</h3>
+                    <p class="text-gray-200">Forget spreadsheets and stopwatches. Let GirlsNav do the tracking.</p>
+                </a>
+                <a href="#" class="block bg-white/10 hover:bg-orange-100/20 border border-orange-200 rounded-xl p-6 text-left shadow-lg transition">
+                    <h3 class="text-xl font-bold text-orange-500 mb-2">For teams & families</h3>
+                    <p class="text-gray-200">Built to help parents, coaches, and young athletes work together better.</p>
+                </a>
+            </div>
+        </section>
+    </main>
+    <footer class="bg-black text-center text-gray-500 py-4 text-sm">
+        &copy; {{ year }} GirlsNav. All rights reserved.
+    </footer>
+</body>
+</html> 

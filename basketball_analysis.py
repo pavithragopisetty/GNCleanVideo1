@@ -50,14 +50,27 @@ def analyze_frame(image_path):
     base64_image = encode_image(image_path)
 
     prompt = """
-You are analyzing a youth basketball game frame. Identify:
-1. Points scored in this frame, and jersey number of the player (if visible).
-2. Passes that are clearly happening (ball in motion between teammates).
-3. Rebound attempts or successful rebounds, and jersey number if visible.
+You are analyzing a youth basketball game frame. For each event, provide high confidence (0-1) and timestamp (0-1) in the frame.
+
+Identify:
+1. Points scored in this frame:
+   - Only count if the ball is clearly going through the net or has just gone through
+   - Include jersey number of the scoring player
+   - Include confidence score (0-1) for the scoring event
+   - Include timestamp (0-1) indicating when in the frame the score occurred
+2. Passes that are clearly happening (ball in motion between teammates)
+3. Rebound attempts or successful rebounds, and jersey number if visible
 
 Output JSON like:
 {
-  "points": { "23": 2 },
+  "points": [
+    {
+      "jersey": "23",
+      "points": 2,
+      "confidence": 0.9,
+      "timestamp": 0.5
+    }
+  ],
   "passes": 1,
   "rebounds": { "11": 1 }
 }
@@ -66,7 +79,7 @@ Output JSON like:
     response = client.chat.completions.create(
         model="gpt-4o",
         messages=[
-            {"role": "system", "content": "You analyze basketball frames for player stats."},
+            {"role": "system", "content": "You analyze basketball frames for player stats with high accuracy."},
             {
                 "role": "user",
                 "content": [
@@ -116,11 +129,22 @@ def analyze_frames(folder_path, output_dir="output"):
     passes = 0
     rebounds = defaultdict(int)
     frame_data_list = []
+    
+    # Track scoring events to prevent duplicates
+    scoring_events = set()  # (jersey, frame_number, timestamp)
+    last_scoring_frame = None
+    last_scoring_jersey = None
+    
+    # First pass: collect all jersey numbers and their first appearances
+    jersey_first_appearance = {}  # Maps jersey numbers to their first frame
+    frame_data_cache = []  # Store frame data for second pass
 
+    # First pass: collect all jersey numbers
     for filename in sorted(os.listdir(folder_path)):
         if filename.endswith(".jpg"):
             image_path = os.path.join(folder_path, filename)
-            logger.info(f"Analyzing {filename}...")
+            frame_number = int(filename.split('_')[1].split('.')[0])
+            logger.info(f"First pass - analyzing {filename}...")
 
             try:
                 result = analyze_frame(image_path)
@@ -134,42 +158,108 @@ def analyze_frames(folder_path, output_dir="output"):
                     cleaned = cleaned.split("```", 1)[0]
                 cleaned = cleaned.strip()
                 frame_data = json.loads(cleaned)
+                
+                # Track first appearance of each jersey number
+                for point_event in frame_data.get("points", []):
+                    jersey = point_event.get("jersey")
+                    if jersey and jersey not in jersey_first_appearance:
+                        jersey_first_appearance[jersey] = filename
+                for jersey in frame_data.get("rebounds", {}).keys():
+                    if jersey not in jersey_first_appearance:
+                        jersey_first_appearance[jersey] = filename
+                
                 frame_data["frame"] = filename
-                frame_data_list.append(frame_data)
-
-                # Safely handle points
-                points_data = frame_data.get("points", {})
-                if not isinstance(points_data, dict):
-                    points_data = {}
-                for jersey, score in points_data.items():
-                    points[jersey] += score
-
-                # Safely handle passes
-                passes_val = frame_data.get("passes", 0)
-                if not isinstance(passes_val, int):
-                    try:
-                        passes_val = int(passes_val)
-                    except Exception:
-                        passes_val = 0
-                passes += passes_val
-
-                # Safely handle rebounds
-                rebounds_data = frame_data.get("rebounds", {})
-                if not isinstance(rebounds_data, dict):
-                    rebounds_data = {}
-                for jersey, count in rebounds_data.items():
-                    rebounds[jersey] += count
-
-                # Annotate and save
-                out_img_path = os.path.join(annotated_frames_dir, f"annotated_{filename}")
-                annotate_frame(image_path, {
-                    "Points": points_data,
-                    "Passes": passes_val,
-                    "Rebounds": rebounds_data
-                }, out_img_path)
+                frame_data["frame_number"] = frame_number
+                frame_data_cache.append(frame_data)
 
             except Exception as e:
                 logger.error(f"Parsing error for {filename}: {e}", exc_info=True)
+
+    # Create jersey mapping based on first appearances
+    jersey_mapping = {}
+    for jersey in sorted(jersey_first_appearance.keys(), 
+                        key=lambda x: jersey_first_appearance[x]):
+        jersey_mapping[jersey] = jersey
+
+    logger.info(f"Jersey mapping created: {jersey_mapping}")
+
+    # Second pass: apply jersey mapping and calculate stats
+    for frame_data in frame_data_cache:
+        try:
+            frame_number = frame_data["frame_number"]
+            
+            # Process points with duplicate detection
+            mapped_points = {}
+            for point_event in frame_data.get("points", []):
+                jersey = point_event.get("jersey")
+                if not jersey:
+                    continue
+                    
+                mapped_jersey = jersey_mapping.get(jersey, jersey)
+                points_value = point_event.get("points", 0)
+                confidence = point_event.get("confidence", 0)
+                timestamp = point_event.get("timestamp", 0)
+                
+                # Skip low confidence events
+                if confidence < 0.7:
+                    continue
+                
+                # Create unique event identifier
+                event_id = (mapped_jersey, frame_number, timestamp)
+                
+                # Check for duplicate scoring events
+                if event_id in scoring_events:
+                    continue
+                    
+                # Check for scoring events in consecutive frames
+                if (last_scoring_frame == frame_number - 1 and 
+                    last_scoring_jersey == mapped_jersey):
+                    continue
+                
+                # Add to scoring events
+                scoring_events.add(event_id)
+                mapped_points[mapped_jersey] = points_value
+                points[mapped_jersey] += points_value
+                
+                # Update last scoring event
+                last_scoring_frame = frame_number
+                last_scoring_jersey = mapped_jersey
+            
+            frame_data["points"] = mapped_points
+            
+            # Process rebounds
+            mapped_rebounds = {}
+            for jersey, count in frame_data.get("rebounds", {}).items():
+                mapped_jersey = jersey_mapping.get(jersey, jersey)
+                mapped_rebounds[mapped_jersey] = count
+                rebounds[mapped_jersey] += count
+            frame_data["rebounds"] = mapped_rebounds
+            
+            # Handle passes
+            passes_val = frame_data.get("passes", 0)
+            if not isinstance(passes_val, int):
+                try:
+                    passes_val = int(passes_val)
+                except Exception:
+                    passes_val = 0
+            passes += passes_val
+            
+            frame_data_list.append(frame_data)
+
+            # Annotate and save
+            out_img_path = os.path.join(annotated_frames_dir, f"annotated_{frame_data['frame']}")
+            annotate_frame(
+                os.path.join(folder_path, frame_data['frame']),
+                {
+                    "Points": mapped_points,
+                    "Passes": passes_val,
+                    "Rebounds": mapped_rebounds
+                },
+                out_img_path
+            )
+
+        except Exception as e:
+            logger.error(f"Error processing frame {frame_data['frame']}: {e}", exc_info=True)
 
     # Save .json
     try:
