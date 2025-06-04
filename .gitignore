@@ -34,6 +34,12 @@ ENV/
 # Project specific
 frames/
 output/
+# Allow images and videos in static/
+!static/*.mp4
+!static/*.jpg
+!static/*.jpeg
+!static/*.png
+!static/*.gif
 *.mp4
 *.jpg
 *.jpeg
