@@ -3,45 +3,78 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Analysis | GirlsNav</title>
+    <title>How It Works | GirlsNav</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="icon" href="/static/girlsnavlogo.png">
+    <link rel="icon" href="/static/GirlsNavImage1.jpeg">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Inter', sans-serif; background: #fff; }
+        .brand-yellow { color: #FFC72C; }
+        .bg-brand-yellow { background-color: #FFC72C; }
+        .hover\:bg-brand-yellow:hover { background-color: #eab308; }
+        .border-brand-yellow { border-color: #FFC72C; }
+        .brand-black { color: #111111; }
+        .bg-brand-black { background-color: #111111; }
+        .hover\:bg-brand-black:hover { background-color: #000; }
+    </style>
 </head>
-<body class="bg-black min-h-screen flex flex-col">
-    <header class="bg-orange-500 shadow-lg py-2 flex items-center justify-center">
-        <img src="{{ url_for('static', filename='girlsnavlogo.png') }}" alt="GirlsNav Logo" class="h-10 w-10 mr-3 rounded-full shadow-md">
-        <h1 class="text-2xl font-extrabold text-white tracking-wide mr-8">GirlsNav Basketball Analysis</h1>
-        <nav class="flex space-x-6">
-            <a href="/" class="text-white hover:text-orange-200 font-semibold transition">Home</a>
-            <a href="/analysis" class="text-white hover:text-orange-200 font-semibold transition">Analysis</a>
-            <a href="/about" class="text-white hover:text-orange-200 font-semibold transition">About</a>
+<body class="bg-white min-h-screen flex flex-col">
+    <!-- Sticky Header -->
+    <header class="w-full flex items-center justify-between px-8 py-4 border-b border-gray-200 bg-white sticky top-0 z-50">
+        <div class="flex items-center">
+            <a href="/" class="flex items-center">
+                <img src="/static/GirlsNavImage1.jpeg" alt="GirlsNav Logo" class="h-10 w-10 mr-3 shadow-md">
+                <span class="text-2xl font-extrabold brand-black tracking-wide">GirlsNav</span>
+            </a>
+        </div>
+        <nav class="flex items-center space-x-8 flex-1 justify-end">
+            <div class="flex space-x-8">
+                <a href="/about" class="text-black hover:underline font-medium transition">About</a>
+                <a href="/analysis" class="text-black hover:underline font-medium transition">How It Works</a>
+                <a href="/blogs" class="text-black hover:underline font-medium transition">Blogs</a>
+                <a href="/contact" class="text-black hover:underline font-medium transition">Contact</a>
+            </div>
+            <div class="flex items-center space-x-4 ml-8">
+                <a href="/login" class="text-black font-semibold hover:underline transition">Log In</a>
+                <a href="/signup" class="px-5 py-2 rounded-lg bg-brand-black text-white font-bold shadow hover:bg-brand-yellow hover:text-black transition">Get Started</a>
+            </div>
         </nav>
     </header>
-    <main class="flex-1 bg-black px-4 py-10 flex flex-col items-center">
-        <section class="w-full bg-orange-50 bg-opacity-10 rounded-xl py-8 px-4 mb-10 text-center">
-            <h2 class="text-4xl font-extrabold text-orange-500 mb-2">What GirlsNav Delivers</h2>
-            <p class="text-lg text-gray-200 mb-6">Discover how GirlsNav transforms your game footage into actionable insights for athletes, families, and coaches.</p>
-            <div class="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
-                <a href="#" class="block bg-white/10 hover:bg-orange-100/20 border border-orange-200 rounded-xl p-6 text-left shadow-lg transition">
-                    <h3 class="text-xl font-bold text-orange-500 mb-2">Video-based stats</h3>
-                    <p class="text-gray-200">Upload footage and get automated breakdowns of points, assists, rebounds, and more.</p>
-                </a>
-                <a href="#" class="block bg-white/10 hover:bg-orange-100/20 border border-orange-200 rounded-xl p-6 text-left shadow-lg transition">
-                    <h3 class="text-xl font-bold text-orange-500 mb-2">Player-specific insights</h3>
-                    <p class="text-gray-200">Track performance by jersey number with no extra hardware needed.</p>
-                </a>
-                <a href="#" class="block bg-white/10 hover:bg-orange-100/20 border border-orange-200 rounded-xl p-6 text-left shadow-lg transition">
-                    <h3 class="text-xl font-bold text-orange-500 mb-2">No manual work</h3>
-                    <p class="text-gray-200">Forget spreadsheets and stopwatches. Let GirlsNav do the tracking.</p>
-                </a>
-                <a href="#" class="block bg-white/10 hover:bg-orange-100/20 border border-orange-200 rounded-xl p-6 text-left shadow-lg transition">
-                    <h3 class="text-xl font-bold text-orange-500 mb-2">For teams & families</h3>
-                    <p class="text-gray-200">Built to help parents, coaches, and young athletes work together better.</p>
-                </a>
+    <main class="flex-1 w-full flex flex-col items-center px-4 pt-16 pb-8">
+        <!-- Hero Section -->
+        <section class="w-full max-w-3xl mx-auto text-center mb-16">
+            <div class="mb-4 text-xs font-semibold uppercase tracking-widest text-gray-500">How It Works</div>
+            <h1 class="text-5xl md:text-6xl font-extrabold brand-black mb-6 leading-tight">From Upload to <span class="brand-yellow">Insights</span></h1>
+            <p class="text-xl text-gray-700 mb-8">GirlsNav makes it easy to turn your game footage into actionable insights. Here's how our process works for athletes, families, and coaches.</p>
+        </section>
+        <!-- Steps/Features Section -->
+        <section class="w-full max-w-5xl mb-20">
+            <div class="grid md:grid-cols-4 gap-8">
+                <div class="flex flex-col items-center bg-white rounded-xl shadow p-6 border border-gray-200">
+                    <span class="text-3xl mb-2 brand-black">🎥</span>
+                    <div class="font-semibold mb-1">Upload Video</div>
+                    <div class="text-gray-500 text-sm text-center">Just upload your game footage</div>
+                </div>
+                <div class="flex flex-col items-center bg-white rounded-xl shadow p-6 border border-gray-200">
+                    <span class="text-3xl mb-2 brand-yellow">🤖</span>
+                    <div class="font-semibold mb-1">AI Analyzes</div>
+                    <div class="text-gray-500 text-sm text-center">AI breaks down every play</div>
+                </div>
+                <div class="flex flex-col items-center bg-white rounded-xl shadow p-6 border border-gray-200">
+                    <span class="text-3xl mb-2 brand-black">📊</span>
+                    <div class="font-semibold mb-1">Get Stats</div>
+                    <div class="text-gray-500 text-sm text-center">Instant, easy-to-read results</div>
+                </div>
+                <div class="flex flex-col items-center bg-white rounded-xl shadow p-6 border border-gray-200">
+                    <span class="text-3xl mb-2 brand-yellow">🚀</span>
+                    <div class="font-semibold mb-1">Unlock Growth</div>
+                    <div class="text-gray-500 text-sm text-center">Track progress, build confidence</div>
+                </div>
             </div>
         </section>
     </main>
-    <footer class="bg-black text-center text-gray-500 py-4 text-sm">
+    <!-- Footer -->
+    <footer class="w-full border-t border-gray-200 bg-white text-center text-gray-500 py-6 text-sm">
         &copy; {{ year }} GirlsNav. All rights reserved.
     </footer>
 </body>

@@ -1,16 +1,44 @@
 import os
-from flask import Flask, request, render_template, jsonify, send_file
+from flask import Flask, request, render_template, jsonify, send_file, redirect, url_for, session
 from werkzeug.utils import secure_filename
 import basketball_analysis
 import uuid
 import shutil
 import logging
 from logging.handlers import RotatingFileHandler
+from dotenv import load_dotenv
+from flask_sqlalchemy import SQLAlchemy
+from flask_mail import Mail, Message
+from itsdangerous import URLSafeTimedSerializer, SignatureExpired, BadSignature
+from datetime import datetime
+import json
 
 app = Flask(__name__)
 app.config['UPLOAD_FOLDER'] = 'uploads'
 app.config['MAX_CONTENT_LENGTH'] = 50 * 1024 * 1024  # 50MB max file size
+app.config['TEMPLATES_AUTO_RELOAD'] = True
 ALLOWED_EXTENSIONS = {'mp4', 'mov', 'avi'}
+
+# Flask-Mail config (set these in your .env or here directly)
+app.config['MAIL_SERVER'] = os.getenv('MAIL_SERVER', 'smtp.gmail.com')
+app.config['MAIL_PORT'] = int(os.getenv('MAIL_PORT', 587))
+app.config['MAIL_USE_TLS'] = True
+app.config['MAIL_USERNAME'] = os.getenv('MAIL_USERNAME')
+app.config['MAIL_PASSWORD'] = os.getenv('MAIL_PASSWORD')
+app.config['MAIL_DEFAULT_SENDER'] = os.getenv('MAIL_DEFAULT_SENDER', app.config['MAIL_USERNAME'])
+app.config['SECRET_KEY'] = os.getenv('SECRET_KEY', 'dev-secret-key')
+app.config['SESSION_TYPE'] = 'filesystem'
+
+# SQLAlchemy config
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///users.db'
+app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+db = SQLAlchemy(app)
+
+load_dotenv()
+openai_api_key = os.getenv("OPENAI_API_KEY")
+
+mail = Mail(app)
+serializer = URLSafeTimedSerializer(app.config['SECRET_KEY'])
 
 # Set up logging
 if not os.path.exists('logs'):
@@ -26,6 +54,11 @@ app.logger.info('Basketball Analysis startup')
 
 # Ensure upload directory exists
 os.makedirs(app.config['UPLOAD_FOLDER'], exist_ok=True)
+
+@app.template_filter('fromjson')
+def fromjson_filter(s):
+    import json
+    return json.loads(s)
 
 def allowed_file(filename):
     return '.' in filename and filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
@@ -78,6 +111,25 @@ def analyze_video():
             'video_filename': video_filename
         }
         
+        # Save video info to DB if user is logged in
+        user_email = session.get('user_email')
+        if user_email:
+            try:
+                video = Video(
+                    user_email=user_email,
+                    filename=video_filename,
+                    session_id=session_id,
+                    points=json.dumps(dict(points)),
+                    total_passes=total_passes,
+                    rebounds=json.dumps(dict(rebounds))
+                )
+                db.session.add(video)
+                db.session.commit()
+                app.logger.info(f'Saved video analysis to database for user {user_email}')
+            except Exception as db_error:
+                app.logger.error(f'Error saving to database: {str(db_error)}')
+                # Continue even if DB save fails
+        
         app.logger.info(f'Analysis complete for session {session_id}')
         return jsonify(results)
 
@@ -127,6 +179,114 @@ def analysis():
 def blogs():
     return render_template('blogs.html')
 
+@app.route('/login')
+def login():
+    return render_template('login.html')
+
+@app.route('/send-login-link', methods=['POST'])
+def send_login_link():
+    email = request.form.get('email')
+    if not email:
+        return render_template('login.html', error='Please enter your email.')
+    # Check if user exists in the database
+    user = User.query.filter_by(email=email).first()
+    if not user:
+        return render_template('login.html', error='No account found with that email. Please sign up first.')
+    # Generate token
+    token = serializer.dumps(email, salt='login-salt')
+    login_url = 'https://girlsnav.com/magic-login/' + token
+    # Send email
+    try:
+        msg = Message('Your GirlsNav Login Link', recipients=[email])
+        msg.html = f'''
+            <html>
+                <body style="font-family: Arial, sans-serif; line-height: 1.6; color: #333;">
+                    <div style="max-width: 600px; margin: 0 auto; padding: 20px;">
+                        <h2 style="color: #111111;">Welcome to GirlsNav!</h2>
+                        <p>Click the button below to log in to your account:</p>
+                        <div style="text-align: center; margin: 30px 0;">
+                            <a href="{login_url}" style="background-color: #FFC72C; color: #000; padding: 12px 24px; text-decoration: none; border-radius: 6px; font-weight: bold; display: inline-block;">Log In to GirlsNav</a>
+                        </div>
+                        <p style="color: #666; font-size: 14px;">This link will expire in 15 minutes.</p>
+                        <hr style="border: 1px solid #eee; margin: 20px 0;">
+                        <p style="color: #666; font-size: 14px;">If the button above doesn't work, copy and paste this URL into your browser:</p>
+                        <p style="background: #f5f5f5; padding: 10px; border-radius: 4px; word-break: break-all; font-size: 14px;">{login_url}</p>
+                    </div>
+                </body>
+            </html>
+        '''
+        msg.body = f'Click the link to log in: {login_url}\n\nThis link will expire in 15 minutes.'
+        mail.send(msg)
+        return render_template('login.html', message='A login link has been sent to your email.')
+    except Exception as e:
+        app.logger.error(f'Error sending login email: {e}')
+        return render_template('login.html', error='Failed to send email. Please try again later.')
+
+@app.route('/magic-login/<token>')
+def magic_login(token):
+    try:
+        email = serializer.loads(token, salt='login-salt', max_age=900)  # 15 min expiry
+        session.clear()  # Clear any existing session data
+        session['user_email'] = email
+        session.permanent = True  # Make the session persistent
+        user = User.query.filter_by(email=email).first()
+        first_name = user.first_name if user else None
+        welcome_message = f'Welcome back to GirlsNav AI!'
+        videos = Video.query.filter_by(user_email=email).order_by(Video.upload_time.desc()).all()
+        return render_template('upload_stats.html', email=email, first_name=first_name, welcome_message=welcome_message, videos=videos)
+    except SignatureExpired:
+        return 'This login link has expired.'
+    except BadSignature:
+        return 'Invalid login link.'
+
+@app.route('/logout')
+def logout():
+    session.clear()
+    return redirect(url_for('index'))
+
+@app.route('/signup', methods=['GET', 'POST'])
+def signup():
+    if session.get('user_email'):
+        return render_template('upload_stats.html', email=session['user_email'], welcome_message='Welcome back to GirlsNav AI!')
+    if request.method == 'POST':
+        first_name = request.form.get('first_name')
+        last_name = request.form.get('last_name')
+        email = request.form.get('email')
+        state = request.form.get('state')
+        phone = request.form.get('phone')
+        terms = request.form.get('terms')
+        # Check if user already exists
+        if User.query.filter_by(email=email).first():
+            return render_template('signup.html', message='Email already registered. Please log in.')
+        user = User(first_name=first_name, last_name=last_name, email=email, state=state, phone=phone)
+        db.session.add(user)
+        db.session.commit()
+        return render_template('signup_success.html')
+    return render_template('signup.html')
+
+@app.route('/contact', methods=['GET', 'POST'])
+def contact():
+    if request.method == 'POST':
+        # You can add logic to handle form submission here (e.g., send email, store in DB)
+        name = request.form.get('name')
+        email = request.form.get('email')
+        phone = request.form.get('phone')
+        message = request.form.get('message')
+        # For now, just show a thank you message
+        return render_template('contact.html', success=True, name=name)
+    return render_template('contact.html', success=False)
+
+@app.route('/dashboard')
+def dashboard():
+    if not session.get('user_email'):
+        return redirect(url_for('login'))
+    user_email = session.get('user_email')
+    user = User.query.filter_by(email=user_email).first()
+    first_name = user.first_name if user else None
+    welcome_message = f'Welcome back to GirlsNav AI!'
+    videos = Video.query.filter_by(user_email=user_email).order_by(Video.upload_time.desc()).all()
+    return render_template('upload_stats.html', email=user_email, first_name=first_name, welcome_message=welcome_message, videos=videos)
+
 @app.errorhandler(404)
 def not_found_error(error):
     return jsonify({'error': 'Resource not found (404)'}), 404
@@ -139,5 +299,23 @@ def request_entity_too_large(error):
 def internal_error(error):
     return jsonify({'error': 'Internal server error (500)'}), 500
 
+class User(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    first_name = db.Column(db.String(50))
+    last_name = db.Column(db.String(50))
+    email = db.Column(db.String(120), unique=True)
+    state = db.Column(db.String(2))
+    phone = db.Column(db.String(20))
+
+class Video(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    user_email = db.Column(db.String(120), db.ForeignKey('user.email'))
+    filename = db.Column(db.String(256))
+    session_id = db.Column(db.String(64))
+    upload_time = db.Column(db.DateTime, default=datetime.utcnow)
+    points = db.Column(db.Text)  # Store as JSON string
+    total_passes = db.Column(db.Integer)
+    rebounds = db.Column(db.Text)  # Store as JSON string
+
 if __name__ == '__main__':
-    app.run(host="0.0.0.0", port=5001, debug=True)
+    app.run(host="0.0.0.0", port=5000, debug=True)
