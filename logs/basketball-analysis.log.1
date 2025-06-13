@@ -1,4 +1,4 @@
-2025-06-11 09:15:21,351 ERROR: Exception on /magic-login/InBhdml0aHJhZ29waXN0dHlAZ21haWwuY29tIg.aElJHQ.LPhfMeMUmM1GqELw46DF_5O9CdU [GET] [in /home/ec2-user/GNCleanVideo1/venv/lib64/python3.9/site-packages/flask/app.py:875]
+2025-06-11 09:15:28,365 ERROR: Exception on /magic-login/InBhdml0aHJhZ29waXN0dHlAZ21haWwuY29tIg.aElJHQ.LPhfMeMUmM1GqELw46DF_5O9CdU [GET] [in /home/ec2-user/GNCleanVideo1/venv/lib64/python3.9/site-packages/flask/app.py:875]
 Traceback (most recent call last):
   File "/home/ec2-user/GNCleanVideo1/venv/lib64/python3.9/site-packages/flask/app.py", line 1511, in wsgi_app
     response = self.full_dispatch_request()
@@ -27,3 +27,73 @@ Traceback (most recent call last):
   File "/home/ec2-user/GNCleanVideo1/templates/upload_stats.html", line 83, in template
     {% set pts = video.points | fromjson %}
 jinja2.exceptions.TemplateAssertionError: No filter named 'fromjson'.
+2025-06-11 09:15:29,015 ERROR: Exception on /magic-login/InBhdml0aHJhZ29waXN0dHlAZ21haWwuY29tIg.aElJHQ.LPhfMeMUmM1GqELw46DF_5O9CdU [GET] [in /home/ec2-user/GNCleanVideo1/venv/lib64/python3.9/site-packages/flask/app.py:875]
+Traceback (most recent call last):
+  File "/home/ec2-user/GNCleanVideo1/venv/lib64/python3.9/site-packages/flask/app.py", line 1511, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/home/ec2-user/GNCleanVideo1/venv/lib64/python3.9/site-packages/flask/app.py", line 919, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/home/ec2-user/GNCleanVideo1/venv/lib64/python3.9/site-packages/flask/app.py", line 917, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/home/ec2-user/GNCleanVideo1/venv/lib64/python3.9/site-packages/flask/app.py", line 902, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+  File "/home/ec2-user/GNCleanVideo1/app.py", line 230, in magic_login
+    session.permanent = True  # Make the session persistent
+  File "/home/ec2-user/GNCleanVideo1/venv/lib64/python3.9/site-packages/flask/templating.py", line 149, in render_template
+    template = app.jinja_env.get_or_select_template(template_name_or_list)
+  File "/home/ec2-user/GNCleanVideo1/venv/lib64/python3.9/site-packages/jinja2/environment.py", line 1087, in get_or_select_template
+    return self.get_template(template_name_or_list, parent, globals)
+  File "/home/ec2-user/GNCleanVideo1/venv/lib64/python3.9/site-packages/jinja2/environment.py", line 1016, in get_template
+    return self._load_template(name, globals)
+  File "/home/ec2-user/GNCleanVideo1/venv/lib64/python3.9/site-packages/jinja2/environment.py", line 975, in _load_template
+    template = self.loader.load(self, name, self.make_globals(globals))
+  File "/home/ec2-user/GNCleanVideo1/venv/lib64/python3.9/site-packages/jinja2/loaders.py", line 138, in load
+    code = environment.compile(source, name, filename)
+  File "/home/ec2-user/GNCleanVideo1/venv/lib64/python3.9/site-packages/jinja2/environment.py", line 771, in compile
+    self.handle_exception(source=source_hint)
+  File "/home/ec2-user/GNCleanVideo1/venv/lib64/python3.9/site-packages/jinja2/environment.py", line 942, in handle_exception
+    raise rewrite_traceback_stack(source=source)
+  File "/home/ec2-user/GNCleanVideo1/templates/upload_stats.html", line 83, in template
+    {% set pts = video.points | fromjson %}
+jinja2.exceptions.TemplateAssertionError: No filter named 'fromjson'.
+2025-06-11 09:17:30,611 INFO: Basketball Analysis startup [in /home/ec2-user/GNCleanVideo1/app.py:52]
+2025-06-11 09:17:30,613 INFO: Basketball Analysis startup [in /home/ec2-user/GNCleanVideo1/app.py:52]
+2025-06-11 09:17:30,653 INFO: Basketball Analysis startup [in /home/ec2-user/GNCleanVideo1/app.py:52]
+2025-06-11 09:18:18,160 INFO: Created session 483572b8-2417-493e-b2f9-e42bde8252b1 [in /home/ec2-user/GNCleanVideo1/app.py:88]
+2025-06-11 09:18:18,165 INFO: Saved video to uploads/483572b8-2417-493e-b2f9-e42bde8252b1/GirlsNav.mp4 [in /home/ec2-user/GNCleanVideo1/app.py:94]
+2025-06-11 09:18:18,166 INFO: Starting frame extraction [in /home/ec2-user/GNCleanVideo1/app.py:98]
+2025-06-11 09:18:20,761 INFO: Starting frame analysis [in /home/ec2-user/GNCleanVideo1/app.py:101]
+2025-06-11 09:18:58,192 INFO: Saved video analysis to database for user pavithragopistty@gmail.com [in /home/ec2-user/GNCleanVideo1/app.py:127]
+2025-06-11 09:18:58,193 INFO: Analysis complete for session 483572b8-2417-493e-b2f9-e42bde8252b1 [in /home/ec2-user/GNCleanVideo1/app.py:132]
+2025-06-11 09:33:42,939 INFO: Created session 05961f13-376b-4b22-b605-c8e17d50e939 [in /home/ec2-user/GNCleanVideo1/app.py:88]
+2025-06-11 09:33:42,945 INFO: Saved video to uploads/05961f13-376b-4b22-b605-c8e17d50e939/GirlsNav.mp4 [in /home/ec2-user/GNCleanVideo1/app.py:94]
+2025-06-11 09:33:42,945 INFO: Starting frame extraction [in /home/ec2-user/GNCleanVideo1/app.py:98]
+2025-06-11 09:33:44,881 INFO: Starting frame analysis [in /home/ec2-user/GNCleanVideo1/app.py:101]
+2025-06-11 09:34:43,389 INFO: Saved video analysis to database for user pavithragopistty@gmail.com [in /home/ec2-user/GNCleanVideo1/app.py:127]
+2025-06-11 09:34:43,390 INFO: Analysis complete for session 05961f13-376b-4b22-b605-c8e17d50e939 [in /home/ec2-user/GNCleanVideo1/app.py:132]
+2025-06-11 09:43:03,929 INFO: Created session d498c7fe-2dc9-4cc4-84fb-78ce16cf161f [in /home/ec2-user/GNCleanVideo1/app.py:88]
+2025-06-11 09:43:03,935 INFO: Saved video to uploads/d498c7fe-2dc9-4cc4-84fb-78ce16cf161f/GirlsNav.mp4 [in /home/ec2-user/GNCleanVideo1/app.py:94]
+2025-06-11 09:43:03,935 INFO: Starting frame extraction [in /home/ec2-user/GNCleanVideo1/app.py:98]
+2025-06-11 09:43:06,228 INFO: Starting frame analysis [in /home/ec2-user/GNCleanVideo1/app.py:101]
+2025-06-11 09:44:06,827 INFO: Saved video analysis to database for user pavithragopistty@gmail.com [in /home/ec2-user/GNCleanVideo1/app.py:127]
+2025-06-11 09:44:06,827 INFO: Analysis complete for session d498c7fe-2dc9-4cc4-84fb-78ce16cf161f [in /home/ec2-user/GNCleanVideo1/app.py:132]
+2025-06-11 16:57:43,396 INFO: Created session b2a7caa9-ce4f-4ad9-89ff-bbb413e2464b [in /home/ec2-user/GNCleanVideo1/app.py:88]
+2025-06-11 16:57:43,401 INFO: Saved video to uploads/b2a7caa9-ce4f-4ad9-89ff-bbb413e2464b/GirlsNav.mp4 [in /home/ec2-user/GNCleanVideo1/app.py:94]
+2025-06-11 16:57:43,402 INFO: Starting frame extraction [in /home/ec2-user/GNCleanVideo1/app.py:98]
+2025-06-11 16:57:46,122 INFO: Starting frame analysis [in /home/ec2-user/GNCleanVideo1/app.py:101]
+2025-06-11 16:58:52,962 INFO: Saved video analysis to database for user pavithragopistty@gmail.com [in /home/ec2-user/GNCleanVideo1/app.py:127]
+2025-06-11 16:58:52,962 INFO: Analysis complete for session b2a7caa9-ce4f-4ad9-89ff-bbb413e2464b [in /home/ec2-user/GNCleanVideo1/app.py:132]
+2025-06-12 00:16:57,325 INFO: Created session d3466d64-00e7-422f-9374-2781efcf4890 [in /home/ec2-user/GNCleanVideo1/app.py:88]
+2025-06-12 00:16:57,331 INFO: Saved video to uploads/d3466d64-00e7-422f-9374-2781efcf4890/GirlsNav.mp4 [in /home/ec2-user/GNCleanVideo1/app.py:94]
+2025-06-12 00:16:57,332 INFO: Starting frame extraction [in /home/ec2-user/GNCleanVideo1/app.py:98]
+2025-06-12 00:17:00,045 INFO: Starting frame analysis [in /home/ec2-user/GNCleanVideo1/app.py:101]
+2025-06-12 00:18:01,226 INFO: Saved video analysis to database for user pavithragopistty@gmail.com [in /home/ec2-user/GNCleanVideo1/app.py:127]
+2025-06-12 00:18:01,227 INFO: Analysis complete for session d3466d64-00e7-422f-9374-2781efcf4890 [in /home/ec2-user/GNCleanVideo1/app.py:132]
+2025-06-12 00:19:11,130 INFO: Created session d2013e1d-2594-4fce-ae40-c1cef8b6fa33 [in /home/ec2-user/GNCleanVideo1/app.py:88]
+2025-06-12 00:19:11,138 INFO: Saved video to uploads/d2013e1d-2594-4fce-ae40-c1cef8b6fa33/GirlsNav.mp4 [in /home/ec2-user/GNCleanVideo1/app.py:94]
+2025-06-12 00:19:11,138 INFO: Starting frame extraction [in /home/ec2-user/GNCleanVideo1/app.py:98]
+2025-06-12 00:19:13,267 INFO: Starting frame analysis [in /home/ec2-user/GNCleanVideo1/app.py:101]
+2025-06-12 00:20:14,378 INFO: Saved video analysis to database for user pavithragopistty@gmail.com [in /home/ec2-user/GNCleanVideo1/app.py:127]
+2025-06-12 00:20:14,378 INFO: Analysis complete for session d2013e1d-2594-4fce-ae40-c1cef8b6fa33 [in /home/ec2-user/GNCleanVideo1/app.py:132]
+2025-06-12 01:58:00,977 INFO: Basketball Analysis startup [in /home/ec2-user/GNCleanVideo1/app.py:52]
+2025-06-12 20:55:34,478 INFO: Basketball Analysis startup [in /home/ec2-user/GNCleanVideo1/app.py:53]

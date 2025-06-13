@@ -17,6 +17,8 @@ app = Flask(__name__)
 app.config['UPLOAD_FOLDER'] = 'uploads'
 app.config['MAX_CONTENT_LENGTH'] = 50 * 1024 * 1024  # 50MB max file size
 app.config['TEMPLATES_AUTO_RELOAD'] = True
+app.config['SEND_FILE_MAX_AGE_DEFAULT'] = 0  # Disable static file caching
+app.jinja_env.auto_reload = True  # Enable Jinja2 auto-reload
 ALLOWED_EXTENSIONS = {'mp4', 'mov', 'avi'}
 
 # Flask-Mail config (set these in your .env or here directly)
