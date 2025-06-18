@@ -42,5 +42,88 @@
             <a href="/login" class="w-full bg-brand-yellow hover:bg-yellow-400 text-black font-bold py-3 px-8 rounded-lg text-lg transition text-center">Go to Login</a>
         </div>
     </main>
+    <div id="feedback-panel" style="position:fixed; top:50%; right:0; transform:translateY(-50%); width:300px; background:white; border-radius:1rem 0 0 1rem; padding:1.5rem; box-shadow:-4px 0 16px rgba(0,0,0,0.1); z-index:9999; transition:right 0.3s ease;">
+      <button id="toggle-feedback" style="position:absolute; left:-40px; top:50%; transform:translateY(-50%); background:#FFC72C; color:#111; font-weight:bold; padding:12px 8px; border-radius:8px 0 0 8px; box-shadow:-2px 0 8px rgba(0,0,0,0.1); border:none; cursor:pointer; writing-mode:vertical-rl; text-orientation:mixed; display:none;">Feedback</button>
+      <div class="text-xl font-bold mb-2 brand-black">We value your feedback!</div>
+      <div id="star-container" class="flex justify-center mb-3" style="gap:0.5rem; font-size:2rem; cursor:pointer;">
+        <span class="star" data-value="1">&#9734;</span>
+        <span class="star" data-value="2">&#9734;</span>
+        <span class="star" data-value="3">&#9734;</span>
+        <span class="star" data-value="4">&#9734;</span>
+        <span class="star" data-value="5">&#9734;</span>
+      </div>
+      <textarea id="feedback-text" rows="3" placeholder="Tell us what you think..." class="w-full border rounded p-2 mb-3" style="resize:none;"></textarea>
+      <button id="submit-feedback-btn" class="bg-brand-yellow hover:bg-black text-black hover:text-white font-bold py-2 px-6 rounded-lg transition w-full">Submit</button>
+      <div id="feedback-thankyou" class="text-green-600 font-semibold mt-2" style="display:none;">Thank you for your feedback!</div>
+    </div>
+    <script>
+    // --- FEEDBACK PANEL LOGIC ---
+    (function(){
+      const panel = document.getElementById('feedback-panel');
+      const stars = panel.querySelectorAll('.star');
+      const feedbackText = document.getElementById('feedback-text');
+      const submitBtn = document.getElementById('submit-feedback-btn');
+      const thankyou = document.getElementById('feedback-thankyou');
+      let selectedRating = 0;
+      stars.forEach(star => {
+        star.onclick = () => {
+          selectedRating = parseInt(star.getAttribute('data-value'));
+          stars.forEach((s, i) => {
+            s.innerHTML = i < selectedRating ? '\u2605' : '\u2606';
+            s.style.color = i < selectedRating ? '#FFC72C' : '#aaa';
+          });
+        };
+        star.onmouseover = () => {
+          const val = parseInt(star.getAttribute('data-value'));
+          stars.forEach((s, i) => {
+            s.innerHTML = i < val ? '\u2605' : '\u2606';
+            s.style.color = i < val ? '#FFC72C' : '#aaa';
+          });
+        };
+        star.onmouseout = () => {
+          stars.forEach((s, i) => {
+            s.innerHTML = i < selectedRating ? '\u2605' : '\u2606';
+            s.style.color = i < selectedRating ? '#FFC72C' : '#aaa';
+          });
+        };
+      });
+      submitBtn.onclick = async () => {
+        if (!selectedRating) {
+          alert('Please select a rating.');
+          return;
+        }
+        submitBtn.disabled = true;
+        fetch('/submit-feedback', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            rating: selectedRating,
+            feedback: feedbackText.value,
+            session_id: null,
+            page: window.location.pathname
+          })
+        }).then(r => r.json()).then(resp => {
+          if (resp.success) {
+            thankyou.style.display = 'block';
+            feedbackText.value = '';
+            selectedRating = 0;
+            stars.forEach((s, i) => {
+              s.innerHTML = '\u2606';
+              s.style.color = '#aaa';
+            });
+            setTimeout(() => {
+              thankyou.style.display = 'none';
+            }, 1800);
+          } else {
+            alert('Error: ' + (resp.error || 'Could not submit feedback.'));
+            submitBtn.disabled = false;
+          }
+        }).catch(() => {
+          alert('Could not submit feedback.');
+          submitBtn.disabled = false;
+        });
+      };
+    })();
+    </script>
 </body>
 </html> 

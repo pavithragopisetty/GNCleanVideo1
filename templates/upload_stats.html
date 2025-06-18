@@ -109,117 +109,203 @@
             Need help? <a href="/contact" class="font-bold text-black hover:underline">Contact us</a>
         </div>
     </main>
+    <div id="feedback-panel" style="position:fixed; top:50%; right:0; transform:translateY(-50%); width:300px; background:white; border-radius:1rem 0 0 1rem; padding:1.5rem; box-shadow:-4px 0 16px rgba(0,0,0,0.1); z-index:9999; transition:right 0.3s ease;">
+      <button id="toggle-feedback" style="position:absolute; left:-40px; top:50%; transform:translateY(-50%); background:#FFC72C; color:#111; font-weight:bold; padding:12px 8px; border-radius:8px 0 0 8px; box-shadow:-2px 0 8px rgba(0,0,0,0.1); border:none; cursor:pointer; writing-mode:vertical-rl; text-orientation:mixed; display:none;">Feedback</button>
+      <div class="text-xl font-bold mb-2 brand-black">We value your feedback!</div>
+      <div id="star-container" class="flex justify-center mb-3" style="gap:0.5rem; font-size:2rem; cursor:pointer;">
+        <span class="star" data-value="1">&#9734;</span>
+        <span class="star" data-value="2">&#9734;</span>
+        <span class="star" data-value="3">&#9734;</span>
+        <span class="star" data-value="4">&#9734;</span>
+        <span class="star" data-value="5">&#9734;</span>
+      </div>
+      <textarea id="feedback-text" rows="3" placeholder="Tell us what you think..." class="w-full border rounded p-2 mb-3" style="resize:none;"></textarea>
+      <button id="submit-feedback-btn" class="bg-brand-yellow hover:bg-black text-black hover:text-white font-bold py-2 px-6 rounded-lg transition w-full">Submit</button>
+      <div id="feedback-thankyou" class="text-green-600 font-semibold mt-2" style="display:none;">Thank you for your feedback!</div>
+    </div>
     <script>
-        const uploadForm = document.getElementById('uploadForm');
-        if (uploadForm) {
-            const uploadStatus = document.getElementById('uploadStatus');
-            let progressBar = document.createElement('div');
-            progressBar.style.height = '8px';
-            progressBar.style.width = '100%';
-            progressBar.style.background = '#e5e7eb';
-            progressBar.style.borderRadius = '4px';
-            progressBar.style.overflow = 'hidden';
-            progressBar.style.marginTop = '16px';
-            let progressFill = document.createElement('div');
-            progressFill.style.height = '100%';
-            progressFill.style.width = '0%';
-            progressFill.style.background = '#1E40AF';
-            progressFill.style.transition = 'width 0.3s';
-            progressBar.appendChild(progressFill);
-            uploadStatus.parentNode.insertBefore(progressBar, uploadStatus.nextSibling);
-
-            let videoPlayer = document.createElement('video');
-            videoPlayer.controls = true;
-            videoPlayer.style.display = 'none';
-            videoPlayer.style.marginTop = '24px';
-            videoPlayer.style.maxWidth = '100%';
-            uploadStatus.parentNode.appendChild(videoPlayer);
-
-            let resultsDiv = document.createElement('div');
-            resultsDiv.style.display = 'none';
-            resultsDiv.style.marginTop = '24px';
-            resultsDiv.style.textAlign = 'center';
-            uploadStatus.parentNode.appendChild(resultsDiv);
-
-            uploadForm.addEventListener('submit', async function(e) {
-                e.preventDefault();
-                const fileInput = document.getElementById('video');
-                const file = fileInput.files[0];
-                if (!file) {
-                    uploadStatus.classList.remove('hidden');
-                    uploadStatus.textContent = 'Please select a video file before clicking Analyze Video.';
-                    return;
-                }
-                if (file.size > 50 * 1024 * 1024) {
-                    alert('File size must be less than 50MB.');
-                    return;
-                }
-                const allowedExtensions = ['.mp4', '.mov', '.avi'];
-                const fileName = file.name.toLowerCase();
-                const hasValidExtension = allowedExtensions.some(ext => fileName.endsWith(ext));
-                if (!hasValidExtension) {
-                    alert('Please upload a video file in MP4, MOV, or AVI format.');
-                    return;
-                }
-                uploadStatus.classList.remove('hidden');
-                uploadStatus.textContent = 'Uploading video...';
-                progressFill.style.width = '10%';
-                resultsDiv.style.display = 'none';
-                videoPlayer.style.display = 'none';
-                await new Promise(res => setTimeout(res, 500));
-                progressFill.style.width = '30%';
-                uploadStatus.textContent = 'Analyzing video...';
-                let percent = 30;
-                let interval = setInterval(() => {
-                    percent += Math.floor(Math.random() * 10) + 5;
-                    if (percent > 90) percent = 90;
-                    progressFill.style.width = percent + '%';
-                    uploadStatus.textContent = `Analyzing video... (${percent}%)`;
-                }, 600);
-                const formData = new FormData(this);
-                Array.from(uploadForm.elements).forEach(el => el.disabled = true);
-                for (let [key, value] of formData.entries()) {
-                    if (value instanceof File) {
-                        console.log(`FormData: ${key} = File(${value.name}, size=${value.size})`);
-                    } else {
-                        console.log(`FormData: ${key} = ${value}`);
-                    }
-                }
-                try {
-                    const response = await fetch('/analyze', {
-                        method: 'POST',
-                        body: formData
-                    });
-                    clearInterval(interval);
-                    progressFill.style.width = '100%';
-                    uploadStatus.textContent = 'Analysis complete!';
-                    if (!response.ok) {
-                        const errorData = await response.json();
-                        throw new Error(errorData.error || 'Server error occurred');
-                    }
-                    const data = await response.json();
-                    videoPlayer.src = `/video/${data.session_id}/${data.video_filename}`;
-                    videoPlayer.style.display = 'block';
-                    resultsDiv.innerHTML = `<div class='text-lg font-bold mb-2 brand-black'>Results</div>
-                        <div class='mb-1'><span class='font-semibold'>Points:</span> ${Object.entries(data.points).map(([jersey, pts]) => `#${jersey}: ${pts}`).join(', ') || '-'}</div>
-                        <div class='mb-1'><span class='font-semibold'>Total Passes:</span> ${data.total_passes ?? '-'}</div>
-                        <div class='mb-1'><span class='font-semibold'>Rebounds:</span> ${Object.entries(data.rebounds).map(([jersey, rbs]) => `#${jersey}: ${rbs}`).join(', ') || '-'}</div>`;
-                    resultsDiv.style.display = 'block';
-                } catch (error) {
-                    clearInterval(interval);
-                    uploadStatus.textContent = error.message || 'An error occurred while uploading the file.';
-                } finally {
-                    setTimeout(() => {
-                        uploadStatus.classList.add('hidden');
-                        uploadStatus.textContent = 'Analyzing video... This may take a few minutes.';
-                        progressFill.style.width = '0%';
-                        Array.from(uploadForm.elements).forEach(el => el.disabled = false);
-                    }, 4000);
-                }
-            });
-        } else {
-            console.error('uploadForm not found!');
+    // --- FEEDBACK PANEL LOGIC ---
+    (function(){
+      const panel = document.getElementById('feedback-panel');
+      const stars = panel.querySelectorAll('.star');
+      const feedbackText = document.getElementById('feedback-text');
+      const submitBtn = document.getElementById('submit-feedback-btn');
+      const thankyou = document.getElementById('feedback-thankyou');
+      let selectedRating = 0;
+      stars.forEach(star => {
+        star.onclick = () => {
+          selectedRating = parseInt(star.getAttribute('data-value'));
+          stars.forEach((s, i) => {
+            s.innerHTML = i < selectedRating ? '\u2605' : '\u2606';
+            s.style.color = i < selectedRating ? '#FFC72C' : '#aaa';
+          });
+        };
+        star.onmouseover = () => {
+          const val = parseInt(star.getAttribute('data-value'));
+          stars.forEach((s, i) => {
+            s.innerHTML = i < val ? '\u2605' : '\u2606';
+            s.style.color = i < val ? '#FFC72C' : '#aaa';
+          });
+        };
+        star.onmouseout = () => {
+          stars.forEach((s, i) => {
+            s.innerHTML = i < selectedRating ? '\u2605' : '\u2606';
+            s.style.color = i < selectedRating ? '#FFC72C' : '#aaa';
+          });
+        };
+      });
+      submitBtn.onclick = async () => {
+        if (!selectedRating) {
+          alert('Please select a rating.');
+          return;
         }
+        submitBtn.disabled = true;
+        fetch('/submit-feedback', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            rating: selectedRating,
+            feedback: feedbackText.value,
+            session_id: null,
+            page: window.location.pathname
+          })
+        }).then(r => r.json()).then(resp => {
+          if (resp.success) {
+            thankyou.style.display = 'block';
+            feedbackText.value = '';
+            selectedRating = 0;
+            stars.forEach((s, i) => {
+              s.innerHTML = '\u2606';
+              s.style.color = '#aaa';
+            });
+            setTimeout(() => {
+              thankyou.style.display = 'none';
+            }, 1800);
+          } else {
+            alert('Error: ' + (resp.error || 'Could not submit feedback.'));
+            submitBtn.disabled = false;
+          }
+        }).catch(() => {
+          alert('Could not submit feedback.');
+          submitBtn.disabled = false;
+        });
+      };
+    })();
+    </script>
+    <script>
+    // --- PROGRESS BAR & UPLOAD STATUS LOGIC ---
+    const uploadForm = document.getElementById('uploadForm');
+    if (uploadForm) {
+      const uploadStatus = document.getElementById('uploadStatus');
+      let progressBar = document.createElement('div');
+      progressBar.style.height = '8px';
+      progressBar.style.width = '100%';
+      progressBar.style.background = '#e5e7eb';
+      progressBar.style.borderRadius = '4px';
+      progressBar.style.overflow = 'hidden';
+      progressBar.style.marginTop = '16px';
+      let progressFill = document.createElement('div');
+      progressFill.style.height = '100%';
+      progressFill.style.width = '0%';
+      progressFill.style.background = '#1E40AF';
+      progressFill.style.transition = 'width 0.3s';
+      progressBar.appendChild(progressFill);
+      uploadStatus.parentNode.insertBefore(progressBar, uploadStatus.nextSibling);
+
+      // Video preview
+      let videoPlayer = document.createElement('video');
+      videoPlayer.controls = true;
+      videoPlayer.style.display = 'none';
+      videoPlayer.style.marginTop = '24px';
+      videoPlayer.style.maxWidth = '100%';
+      uploadStatus.parentNode.appendChild(videoPlayer);
+
+      // Results display
+      let resultsDiv = document.createElement('div');
+      resultsDiv.style.display = 'none';
+      resultsDiv.style.marginTop = '24px';
+      resultsDiv.style.textAlign = 'center';
+      uploadStatus.parentNode.appendChild(resultsDiv);
+
+      uploadForm.addEventListener('submit', async function(e) {
+        e.preventDefault();
+        const fileInput = document.getElementById('video');
+        const file = fileInput.files[0];
+        if (!file) {
+          uploadStatus.classList.remove('hidden');
+          uploadStatus.textContent = 'Please select a video file before clicking Analyze Video.';
+          return;
+        }
+        if (file.size > 50 * 1024 * 1024) {
+          alert('File size must be less than 50MB.');
+          return;
+        }
+        const allowedExtensions = ['.mp4', '.mov', '.avi'];
+        const fileName = file.name.toLowerCase();
+        const hasValidExtension = allowedExtensions.some(ext => fileName.endsWith(ext));
+        if (!hasValidExtension) {
+          alert('Please upload a video file in MP4, MOV, or AVI format.');
+          return;
+        }
+        uploadStatus.classList.remove('hidden');
+        uploadStatus.textContent = 'Uploading video...';
+        progressFill.style.width = '10%';
+        resultsDiv.style.display = 'none';
+        videoPlayer.style.display = 'none';
+        await new Promise(res => setTimeout(res, 500));
+        progressFill.style.width = '30%';
+        uploadStatus.textContent = 'Analyzing video...';
+        let percent = 30;
+        let interval = setInterval(() => {
+          percent += Math.floor(Math.random() * 10) + 5;
+          if (percent > 90) percent = 90;
+          progressFill.style.width = percent + '%';
+          uploadStatus.textContent = `Analyzing video... (${percent}%)`;
+        }, 600);
+        const formData = new FormData(this);
+        Array.from(uploadForm.elements).forEach(el => el.disabled = true);
+        for (let [key, value] of formData.entries()) {
+          if (value instanceof File) {
+            console.log(`FormData: ${key} = File(${value.name}, size=${value.size})`);
+          } else {
+            console.log(`FormData: ${key} = ${value}`);
+          }
+        }
+        try {
+          const response = await fetch('/analyze', {
+            method: 'POST',
+            body: formData
+          });
+          clearInterval(interval);
+          progressFill.style.width = '100%';
+          uploadStatus.textContent = 'Analysis complete!';
+          if (!response.ok) {
+            const errorData = await response.json();
+            throw new Error(errorData.error || 'Server error occurred');
+          }
+          const data = await response.json();
+          videoPlayer.src = `/video/${data.session_id}/${data.video_filename}`;
+          videoPlayer.style.display = 'block';
+          resultsDiv.innerHTML = `<div class='text-lg font-bold mb-2 brand-black'>Results</div>
+            <div class='mb-1'><span class='font-semibold'>Points:</span> ${Object.entries(data.points).map(([jersey, pts]) => `#${jersey}: ${pts}`).join(', ') || '-'}</div>
+            <div class='mb-1'><span class='font-semibold'>Total Passes:</span> ${data.total_passes ?? '-'}</div>
+            <div class='mb-1'><span class='font-semibold'>Rebounds:</span> ${Object.entries(data.rebounds).map(([jersey, rbs]) => `#${jersey}: ${rbs}`).join(', ') || '-'}</div>`;
+          resultsDiv.style.display = 'block';
+        } catch (error) {
+          clearInterval(interval);
+          uploadStatus.textContent = error.message || 'An error occurred while uploading the file.';
+        } finally {
+          setTimeout(() => {
+            uploadStatus.classList.add('hidden');
+            uploadStatus.textContent = 'Analyzing video... This may take a few minutes.';
+            progressFill.style.width = '0%';
+            Array.from(uploadForm.elements).forEach(el => el.disabled = false);
+          }, 4000);
+        }
+      });
+    } else {
+      console.error('uploadForm not found!');
+    }
     </script>
 </body>
 </html> 

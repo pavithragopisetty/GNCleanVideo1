@@ -1,0 +1,134 @@
+[
+  {
+    "frame": "frame_0001.jpg",
+    "points": [],
+    "passes": 0,
+    "rebounds": {}
+  },
+  {
+    "frame": "frame_0002.jpg",
+    "points": [],
+    "passes": 0,
+    "rebounds": {}
+  },
+  {
+    "frame": "frame_0003.jpg",
+    "points": [],
+    "passes": 0,
+    "rebounds": {}
+  },
+  {
+    "frame": "frame_0004.jpg",
+    "points": [],
+    "passes": 0,
+    "rebounds": {}
+  },
+  {
+    "frame": "frame_0005.jpg",
+    "points": [],
+    "passes": 0,
+    "rebounds": {}
+  },
+  {
+    "frame": "frame_0001.jpg",
+    "points": [],
+    "passes": 0,
+    "rebounds": {}
+  },
+  {
+    "frame": "frame_0002.jpg",
+    "points": [],
+    "passes": 0,
+    "rebounds": {}
+  },
+  {
+    "frame": "frame_0003.jpg",
+    "points": [],
+    "passes": 0,
+    "rebounds": {}
+  },
+  {
+    "frame": "frame_0004.jpg",
+    "points": [],
+    "passes": 0,
+    "rebounds": {}
+  },
+  {
+    "frame": "frame_0005.jpg",
+    "points": [],
+    "passes": 0,
+    "rebounds": {}
+  },
+  {
+    "frame": "frame_0001.jpg",
+    "points": [],
+    "passes": 0,
+    "rebounds": {}
+  },
+  {
+    "frame": "frame_0002.jpg",
+    "points": [],
+    "passes": 0,
+    "rebounds": {}
+  },
+  {
+    "frame": "frame_0003.jpg",
+    "points": [],
+    "passes": 0,
+    "rebounds": {}
+  },
+  {
+    "frame": "frame_0004.jpg",
+    "points": [
+      {
+        "jersey": 23,
+        "points": 2,
+        "confidence": 0.95
+      }
+    ],
+    "passes": 0,
+    "rebounds": {}
+  },
+  {
+    "frame": "frame_0005.jpg",
+    "points": [],
+    "passes": 0,
+    "rebounds": {}
+  },
+  {
+    "frame": "frame_0001.jpg",
+    "points": [
+      {
+        "jersey": 22,
+        "points": 2,
+        "confidence": 0.9
+      }
+    ],
+    "passes": 0,
+    "rebounds": {}
+  },
+  {
+    "frame": "frame_0002.jpg",
+    "points": [],
+    "passes": 0,
+    "rebounds": {}
+  },
+  {
+    "frame": "frame_0003.jpg",
+    "points": [],
+    "passes": 0,
+    "rebounds": {}
+  },
+  {
+    "frame": "frame_0004.jpg",
+    "points": [],
+    "passes": 0,
+    "rebounds": {}
+  },
+  {
+    "frame": "frame_0005.jpg",
+    "points": [],
+    "passes": 0,
+    "rebounds": {}
+  }
+]

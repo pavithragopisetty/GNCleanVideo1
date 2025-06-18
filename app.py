@@ -1,7 +1,7 @@
 import os
 from flask import Flask, request, render_template, jsonify, send_file, redirect, url_for, session
 from werkzeug.utils import secure_filename
-import basketball_analysis
+import optimized_analysis
 import uuid
 import shutil
 import logging
@@ -97,12 +97,12 @@ def analyze_video():
     app.logger.info(f'Saved video to {video_path}')
 
     try:
-        # Run the analysis
+        # Run the analysis using the optimized module
         app.logger.info('Starting frame extraction')
-        frames_dir = basketball_analysis.extract_frames(video_path, output_dir=os.path.join(session_dir, "frames"))
+        frames_dir = optimized_analysis.extract_frames(video_path, output_dir=os.path.join(session_dir, "frames"))
         
         app.logger.info('Starting frame analysis')
-        points, total_passes, rebounds = basketball_analysis.analyze_frames(frames_dir, output_dir=os.path.join(session_dir, "output"))
+        points, total_passes, rebounds = optimized_analysis.analyze_frames(frames_dir, output_dir=os.path.join(session_dir, "output"))
         
         # Prepare the results
         results = {
@@ -188,12 +188,18 @@ def login():
 @app.route('/send-login-link', methods=['POST'])
 def send_login_link():
     email = request.form.get('email')
+    app.logger.info(f'Login link requested for email: {email}')  # Log the request
     if not email:
         return render_template('login.html', error='Please enter your email.')
     # Check if user exists in the database
     user = User.query.filter_by(email=email).first()
     if not user:
-        return render_template('login.html', error='No account found with that email. Please sign up first.')
+        app.logger.warning(f'Login link requested for non-existent user: {email}')  # Log non-existent user
+        return render_template(
+            'login.html',
+            error='No account found with that email. <a href="/signup" class="text-brand-yellow font-semibold underline">Sign up here</a> to get started!',
+            error_is_html=True
+        )
     # Generate token
     token = serializer.dumps(email, salt='login-salt')
     login_url = 'https://girlsnav.com/magic-login/' + token
@@ -219,6 +225,14 @@ def send_login_link():
         '''
         msg.body = f'Click the link to log in: {login_url}\n\nThis link will expire in 15 minutes.'
         mail.send(msg)
+        # Store the email in the database
+        try:
+            login_request = LoginRequest(email=email)
+            db.session.add(login_request)
+            db.session.commit()
+            app.logger.info(f'Successfully stored login request for {email}')  # Log successful storage
+        except Exception as db_error:
+            app.logger.error(f'Error storing login request in database: {str(db_error)}')  # Log database error
         return render_template('login.html', message='A login link has been sent to your email.')
     except Exception as e:
         app.logger.error(f'Error sending login email: {e}')
@@ -289,6 +303,30 @@ def dashboard():
     videos = Video.query.filter_by(user_email=user_email).order_by(Video.upload_time.desc()).all()
     return render_template('upload_stats.html', email=user_email, first_name=first_name, welcome_message=welcome_message, videos=videos)
 
+@app.route('/submit-feedback', methods=['POST'])
+def submit_feedback():
+    data = request.get_json()
+    if not data or 'rating' not in data:
+        return jsonify({'success': False, 'error': 'Missing required fields'}), 400
+
+    try:
+        feedback = Feedback(
+            user_email=session.get('user_email'),
+            video_session_id=data.get('session_id'),
+            rating=data.get('rating'),
+            feedback_text=data.get('feedback', ''),
+            page=data.get('page')
+        )
+        db.session.add(feedback)
+        db.session.commit()
+        return jsonify({'success': True, 'message': 'Feedback submitted!'}), 200
+    except Exception as e:
+        return jsonify({'success': False, 'error': str(e)}), 500
+
+@app.route('/test-alive')
+def test_alive():
+    return jsonify({"status": "alive"})
+
 @app.errorhandler(404)
 def not_found_error(error):
     return jsonify({'error': 'Resource not found (404)'}), 404
@@ -319,5 +357,22 @@ class Video(db.Model):
     total_passes = db.Column(db.Integer)
     rebounds = db.Column(db.Text)  # Store as JSON string
 
+# Add new model for login requests
+class LoginRequest(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    email = db.Column(db.String(120))
+    timestamp = db.Column(db.DateTime, default=datetime.utcnow)
+
+class Feedback(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    user_email = db.Column(db.String(120))
+    video_session_id = db.Column(db.String(64))
+    rating = db.Column(db.Integer)  # 1-5 stars
+    feedback_text = db.Column(db.Text)
+    page = db.Column(db.String(256))
+    submitted_at = db.Column(db.DateTime, default=datetime.utcnow)
+
 if __name__ == '__main__':
+    with app.app_context():
+        db.create_all()  # Create tables if they don't exist
     app.run(host="0.0.0.0", port=5000, debug=True)
